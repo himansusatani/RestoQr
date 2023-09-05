@@ -9,17 +9,22 @@ import {MatSidenavModule } from '@angular/material/sidenav';
 import {MatSidenavContent } from '@angular/material/sidenav';
 import {MatSidenav } from '@angular/material/sidenav';
 import { SidenavComponent } from './Pages/sidenav/sidenav.component';
+import { HeaderComponent } from './Pages/header/header.component';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSlideToggleModule,MatSidenavModule,
+    MatSlideToggleModule,MatSidenavModule,MatListModule,MatToolbarModule,MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
