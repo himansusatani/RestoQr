@@ -1,69 +1,74 @@
-  <mat-toolbar class="mat-elevation-z8">
-    <button
-    class="btn"
-      mat-icon-button
-      *ngIf="sidenav.mode === 'over'"
-      (click)="sidenav.toggle()"
-    >
-    <i *ngIf="!sidenav.opened" class="bi bi-list"></i>
-    <i *ngIf="sidenav.opened" class="bi bi-list-nested"></i>
-    </button>
-    RestoQr
-    <!-- <div class="label"> Right click the image to show available actions: </div>
-    <img id="image" alt="product" src="images/products/7.png" /> -->
-    <!-- <dx-context-menu
-      [dataSource]="items"
-      [width]="200"
-      target="#image"
-    >
-    </dx-context-menu> -->
-    
-    <!-- <mat-form-field class="text-reset me-3" style="margin-left:80%; margin-top: 10px;"> 
-      <mat-select placeholder="Favorite food">
-        <mat-option>
-        </mat-option>
-      </mat-select>
-    </mat-form-field> -->
-    
-  </mat-toolbar>
-  
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened="true">
-      <!-- <button mat-button class="menu-button">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
-      </button>
-      <button mat-button class="menu-button">
-        <mat-icon>info</mat-icon>
-        <span>About</span>
-      </button> -->
-      
-      <img class="logo" src="../../../assets/Images/logo.png" alt="logo">
-      <ul class="ul" style="margin-right: 10%;">
-        <button class="btn mt-5" style="color: white;">Dashboard</button>
-        <button class="btn mt-5" style="color: white;">Show Order</button>
-        <button class="btn mt-5" style="color: white;">Delete Order</button>
-        <button class="btn mt-5" style="color: white;">Business</button>
-        <button class="btn mt-5" style="color: white;">Other</button>
-        <!-- <li class="mt-5">Dashboard</li>
-        <li class="mt-5">Show Order</li>
-        <li class="mt-5">Delete Order</li>
-        <li class="mt-5">Business</li>
-        <li class="mt-5">Other</li> -->
-      </ul>
-      
-      <mat-divider></mat-divider>
-    
-      <!-- <button mat-button class="menu-button">
-        <mat-icon>help</mat-icon>
-        <span>Help</span>
-      </button> -->
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="content mat-elevation-z8">Main content here!</div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <button (click)="drawer.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+  </button>
+  <span>Material UI Tutorial</span>
+  <span class="example-spacer"></span>
+  <button routerLink="" mat-button>Home</button>
+  <button [matMenuTriggerFor]="lvl1master" mat-button>Master</button>
+  <mat-menu #lvl1master="matMenu">
+      <button [matMenuTriggerFor]="company" mat-menu-item>Company</button>
+      <button [matMenuTriggerFor]="customer" mat-menu-item>Customer</button>
+      <button [matMenuTriggerFor]="product" mat-menu-item>Product</button>
+  </mat-menu>
+
+  <mat-menu #company="matMenu">
+      <button mat-menu-item>Term</button>
+      <button mat-menu-item>Tax</button>
+      <button mat-menu-item>Currency</button>
+  </mat-menu>
+  <mat-menu #customer="matMenu">
+      <button mat-menu-item>Type</button>
+      <button mat-menu-item>Tax</button>
+  </mat-menu>
+  <mat-menu #product="matMenu">
+      <button mat-menu-item>Category</button>
+      <button [matMenuTriggerFor]="variant" mat-menu-item>Variant</button>
+      <button mat-menu-item>UOM</button>
+  </mat-menu>
+
+  <mat-menu #variant="matMenu">
+      <button mat-menu-item>Color</button>
+      <button mat-menu-item>Size</button>
+  </mat-menu>
+
+  <button routerLink="input" mat-button>Input</button>
+  <button routerLink="autocomplete" mat-button>Autocomplete</button>
+  <a href="https://www.youtube.com/channel/UCsbmVmB_or8sVLLEq4XhE_A/join" mat-raised-button color="accent">Join Us</a>
+  <button (click)="badgevisibility()"  mat-icon-button>
+      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">notifications</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+  <mat-nav-list>
+      <mat-list-item>
+          <button routerLink="card" mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+      </mat-list-item>
+      <mat-list-item>
+          <button routerLink="" mat-button><mat-icon>home</mat-icon> Home</button>
+      </mat-list-item>
+      <mat-list-item>
+          <button routerLink="slider" mat-button><mat-icon>explore</mat-icon> Slider</button>
+      </mat-list-item>
+      <mat-list-item>
+          <button routerLink="table" mat-button><mat-icon>table</mat-icon> Table</button>
+      </mat-list-item>
+      <mat-list-item>
+          <button mat-button><mat-icon>settings</mat-icon> Settings</button>
+      </mat-list-item>
+      <mat-list-item>
+          <button mat-button><mat-icon>help</mat-icon> Help</button>
+      </mat-list-item>
+      <mat-list-item>
+          <button mat-button><mat-icon>analytics</mat-icon> analytics</button>
+      </mat-list-item>
+  </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+      <div style="text-align: center;min-height: 600px;">
+
+          <router-outlet></router-outlet>
+          </div>
+  </mat-drawer-content>
+</mat-drawer-container>

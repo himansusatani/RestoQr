@@ -11,9 +11,22 @@ export class SidenavComponent {
   showFiller = false;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+  
+  items: any;
+  constructor(private observer: BreakpointObserver,) {}
 
-  constructor(private observer: BreakpointObserver) {}
-
+  ngOnInit(){
+    this.items = [{
+      text: 'Share',
+      items: [
+        { text: 'Facebook' },
+        { text: 'Twitter' }],
+    },
+    { text: 'Download' },
+    { text: 'Comment' },
+    { text: 'Favorite' },
+    ]
+  }
   ngAfterViewInit() {
     this.observer.observe(["(max-width: 800px)"]).subscribe((res) => {
       if (res.matches) {
@@ -24,5 +37,9 @@ export class SidenavComponent {
         this.sidenav.open();
       }
     });
+  }
+  badgevisible = false;
+  badgevisibility() {
+    this.badgevisible = true;
   }
 }
