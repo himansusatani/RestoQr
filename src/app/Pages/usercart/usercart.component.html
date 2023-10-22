@@ -1,0 +1,85 @@
+<div class="container">
+    <form action="" >
+        <div class="row">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="00 00 00 00 00">Contact No</label>
+                        <input class="form-control" id="exampleFormControlInput1" placeholder="Enter Contact No">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Table No</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<ng-container *ngIf="products.length !=0">
+    <div class="container mt-5">
+        <div class="card-table">
+            <div class="cart-product">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Food Name</th>
+                            <!-- <th>Product Image</th> -->
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of products; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.foodName}}</td>
+                            <!-- <td><img style="width: 120px;" src="{{item.image}}" alt=""></td> -->
+                            <td style="width: 25%;">{{item.foodDescription}}</td>
+                            <th style="width: 12%;">{{item.foodPrice}}</th>
+                            <td style="width: 12%;">{{item.total}}</td>
+                            <td>
+                                <button (click)="removeItem(item)" class="btn btn-danger"><i
+                                        class="bi bi-trash-fill"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
+                            <td><button routerLink="/foodSelection" class="btn btn-primary">Shop More</button></td>
+                            <td><button class="btn btn-success">Checkout</button></td>
+                            <td><strong>Grand Total : ${{grandTotal}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="products.length ==0">
+    <div class="container">
+        <div class="card">
+            <h5 class="card-title">My Cart 🛒</h5>
+        </div>
+        <div class="center">
+            <img src="../../../assets/Images/logo.png" alt="">
+            <h4>Your cart is empty 😑!</h4>
+            <h6>Add Food For Your Moj 😋</h6>
+            <button routerLink="foodSelection" class="btn btn-primary">Shop Now</button>
+        </div>
+    </div>
+</ng-container>

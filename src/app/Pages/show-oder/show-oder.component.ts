@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { ApiCallService } from 'src/app/Services/api-call.service';
 
 @Component({
   selector: 'app-show-oder',
@@ -7,4 +9,33 @@ import { Component } from '@angular/core';
 })
 export class ShowOderComponent {
 
+  data:any[]=[];
+  pdfurl='';
+  constructor(private apiservice : ApiCallService,private http:HttpClient)
+  { }
+
+  ngOnInit():void{
+    this.GetOrderData();
+  }
+
+  GetOrderData(){
+    this.apiservice.GetallorderData().subscribe( res => {
+      this.data=res;
+      console.log('data',this.data);
+    });
+  }
+   baseurl = 'https://localhost:7202/api/';
+  print(SoId:any)
+  {
+    this.apiservice.GeneratePdf(SoId).subscribe(( data) => {
+        let blob:Blob=data.body as Blob;
+        let url = window.URL.createObjectURL(blob);
+       // window.open(url);
+       this.pdfurl=url;
+
+    })
+
+
+    
+  }
 }

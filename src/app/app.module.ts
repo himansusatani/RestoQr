@@ -54,16 +54,34 @@ import {
   DxGalleryModule,
   DxAccordionModule
 } from "devextreme-angular";
+import { ApiCallService } from './Services/api-call.service';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginAdminComponent } from './Pages/login-admin/login-admin.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { NgxPrintModule } from 'ngx-print';
+import { UserFoodSelectionComponent } from './Pages/user-food-selection/user-food-selection.component';
+import { UserNavComponent } from './Pages/user-nav/user-nav.component';
+import { ForgotPasswordComponent } from './Pages/forgot-password/forgot-password.component';
+import { UsercartComponent } from './Pages/usercart/usercart.component';
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     HeaderComponent,
-    ShowOderComponent
+    ShowOderComponent,
+    LoginAdminComponent,
+    UserFoodSelectionComponent,
+    UserNavComponent,
+    ForgotPasswordComponent,
+    UsercartComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,MatSidenavModule,MatListModule,MatToolbarModule,MatIconModule,MatFormFieldModule,MatSelectModule
     ,MatMenuModule
@@ -103,8 +121,10 @@ import {
     DxTemplateModule,
     DxLoadPanelModule,
     DxHtmlEditorModule,
+    NgxExtendedPdfViewerModule,
+    NgxPrintModule
   ],
-  providers: [],
+  providers: [ApiCallService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

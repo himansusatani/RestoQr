@@ -1,0 +1,87 @@
+<!-- <section class=" card vh-100" style="background-color: #eee;">
+    
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-6 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-16 col-lg-6 col-xl-5 order-2 order-lg-1">
+  
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Admin Sign in</p>
+  
+                  <form class="mx-1 mx-md-4" [formGroup]="loginform" >
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="form3Example1c" autocomplete="off" class="form-control" placeholder="ENTER EMAIL" formControlName="emailid" />
+                        <label class="form-label" for="form3Example1c">Email</label>
+                        <span style="color: red;" *nfIf="emailid && emailid.invalid && emailid.touched">This Field Is Not Valid & Invaild Formate</span>
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="password" id="form3Example4c" autocomplete="off" placeholder="ENTER PASSWORD" class="form-control" formControlName="password" />
+                        <label class="form-label" for="form3Example4c">Password</label>
+                        <span style="color: red;" *ngIf="password && password.invalid && password.touched">This Field Is Not Valid</span>
+                      </div>
+                    </div>
+  
+                    
+  
+                  </form>
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="button" [disabled]="loginform.invalid" class="btn btn-primary btn-lg" routerLink="" (click)="submit()">LogIn</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section> -->
+  
+  
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Yinka Enoch Adedokun">
+	<title>Login Page</title>
+</head>
+<body>
+	<!-- Main Content -->
+	<div class="container-fluid">
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+				<img src="../../../assets/Images/logo.png" alt="">
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<div class="row">
+						<h2>Log In</h2>
+					</div>
+					<div class="row">
+						<form control="" class="form-group" [formGroup]="loginform">
+							<div class="row">
+								<input type="text" name="username" id="username" class="form__input" placeholder="Email" formControlName="emailid">
+							</div>
+							<div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								<input type="password" name="password" id="password" class="form__input" placeholder="Password" formControlName="password">
+							</div>
+							<div class="row">
+								<input type="submit" value="Submit" (click)="submit()"  [disabled]="loginform.invalid" class="btn">
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<p>Forgot Password? <a href="#">Click Here</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

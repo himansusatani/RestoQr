@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver} from '@angular/cdk/layout';
+import { Router } from '@angular/router';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   selector: 'app-sidenav',
@@ -13,7 +15,20 @@ export class SidenavComponent {
   sidenav!: MatSidenav;
   
   items: any;
-  constructor(private observer: BreakpointObserver,) {}
+  constructor(private observer: BreakpointObserver,private route:Router) {}
+
+  isLoggedIn=true;
+  logout(){
+    localStorage.clear();
+    const message = "LogOut Successfully...!!!";
+        notify({
+          message,
+          width: 450,
+        },
+          'success',
+          2000);
+    this.route.navigate(['/login']);
+  }
 
   ngOnInit(){
     this.items = [{
@@ -39,6 +54,7 @@ export class SidenavComponent {
     });
   }
   badgevisible = false;
+
   badgevisibility() {
     this.badgevisible = true;
   }
