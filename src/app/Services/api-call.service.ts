@@ -25,7 +25,7 @@ export class ApiCallService {
   }
   
   loginadmin(obj:any){
-    return this.http.post<any>(this.baseurl+"UserLogin/CheckUserLogin",obj)
+    return this.http.post<any>(this.baseurl+"AdminLogin/CheckAdminLogin",obj)
   }
 
 
@@ -34,5 +34,10 @@ export class ApiCallService {
   GetAllFoodSelection()
   {
     return this.http.get<any>(this.baseurl+'FoodMenu/GetAllFoodDetails');
+  }
+
+  CheckOutFood(username:any , tableno:any , mobileno:any ,obj:any)
+  {
+    return this.http.post<any>(this.baseurl+"OrderFood/InserOrderAndUser?username="+username +"&tableno="+tableno+"&mobileno="+mobileno,obj);
   }
 }

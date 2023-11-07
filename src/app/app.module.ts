@@ -64,6 +64,7 @@ import { UserFoodSelectionComponent } from './Pages/user-food-selection/user-foo
 import { UserNavComponent } from './Pages/user-nav/user-nav.component';
 import { ForgotPasswordComponent } from './Pages/forgot-password/forgot-password.component';
 import { UsercartComponent } from './Pages/usercart/usercart.component';
+import { UserDetailsComponent } from './Pages/user-details/user-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,8 @@ import { UsercartComponent } from './Pages/usercart/usercart.component';
     UserFoodSelectionComponent,
     UserNavComponent,
     ForgotPasswordComponent,
-    UsercartComponent
+    UsercartComponent,
+    UserDetailsComponent
   ],
   imports: [
     FormsModule,

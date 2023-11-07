@@ -11,6 +11,7 @@ import { AuthService } from 'src/auth/auth.service';
 import { auditTime } from 'rxjs';
 import { AddTocartService } from './Services/add-tocart.service';
 import { UsercartComponent } from './Pages/usercart/usercart.component';
+import { UserDetailsComponent } from './Pages/user-details/user-details.component';
 const routes: Routes = [
   
   {path:'', redirectTo:"login",pathMatch:"full"},
@@ -21,7 +22,8 @@ const routes: Routes = [
   ]},
 
   {path:'userheader',component:UserNavComponent,children:[
-    {path:'',pathMatch:"full",redirectTo:"foodSelection"},
+    {path:'',pathMatch:"full",redirectTo:"userdetail"},
+    {path:'userdetail',component:UserDetailsComponent},
     {path:'foodSelection',component:UserFoodSelectionComponent},
     {path:'addtocart',component:UsercartComponent}
   ]}

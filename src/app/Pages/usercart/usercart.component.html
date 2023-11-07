@@ -5,21 +5,23 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="00 00 00 00 00">Contact No</label>
-                        <input class="form-control" id="exampleFormControlInput1" placeholder="Enter Contact No">
-                    </div>
+                        <input class="form-control" id="exampleFormControlInput1" value="{{mobileNo}}"  placeholder="Enter Contact No">
+                    </div> 
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Table No</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                        <input class="form-control" id="exampleFormControlInput1" value="{{tableNo}}"  placeholder="Enter Table No">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">UserName</label>
+                        <input class="form-control" id="exampleFormControlInput1" value={{userName}} placeholder="Enter UserName">
                     </div>
                 </div>
             </div>
@@ -56,11 +58,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4"></td>
+                            <td colspan=""></td>
+                            <td><strong>Grand Total : ${{grandTotal}}</strong></td>
                             <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
                             <td><button routerLink="/foodSelection" class="btn btn-primary">Shop More</button></td>
-                            <td><button class="btn btn-success">Checkout</button></td>
-                            <td><strong>Grand Total : ${{grandTotal}}</strong></td>
+                            <td><button class="btn btn-success" (click)="Checkout()" >Checkout</button></td>
                         </tr>
                     </tbody>
                 </table>
