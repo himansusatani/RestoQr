@@ -11,7 +11,7 @@ export class ApiCallService {
 
   public GetallorderData()
   {
-    return this.http.get<any>(this.baseurl+'ShowOrder/GetAllOrderData');
+    return this.http.get<any>(this.baseurl+'ShowOrder/GetUserOrder');
   }
 
   GetOrderById(soid:any)
@@ -28,6 +28,10 @@ export class ApiCallService {
     return this.http.post<any>(this.baseurl+"AdminLogin/CheckAdminLogin",obj)
   }
 
+  GetOrderByOrderId(orderId:any)
+  {
+    return this.http.get<any>(this.baseurl+'ShowOrder/GetOrderByOrderId?orderId='+orderId);
+  }
 
 
   //User Api

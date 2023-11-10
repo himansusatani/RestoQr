@@ -8,8 +8,9 @@ import { ApiCallService } from 'src/app/Services/api-call.service';
   styleUrls: ['./show-oder.component.css']
 })
 export class ShowOderComponent {
-
+  popupVisible = false;
   data:any[]=[];
+  orderData :any;
   pdfurl='';
   constructor(private apiservice : ApiCallService,private http:HttpClient)
   { }
@@ -25,15 +26,20 @@ export class ShowOderComponent {
     });
   }
    baseurl = 'https://localhost:7202/api/';
-  print(SoId:any)
+   manage(orderId:any)
   {
-    this.apiservice.GeneratePdf(SoId).subscribe(( data) => {
-        let blob:Blob=data.body as Blob;
-        let url = window.URL.createObjectURL(blob);
-       // window.open(url);
-       this.pdfurl=url;
-
+    console.log('id',orderId);
+    this.apiservice.GetOrderByOrderId(orderId).subscribe(res => {
+      this.orderData = res;
     })
+    this.popupVisible = true;
+    // this.apiservice.GeneratePdf(SoId).subscribe(( data) => {
+    //     let blob:Blob=data.body as Blob;
+    //     let url = window.URL.createObjectURL(blob);
+    //    // window.open(url);
+    //    this.pdfurl=url;
+
+    // })
 
 
     

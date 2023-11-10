@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AddTocartService } from 'src/app/Services/add-tocart.service';
 import { ApiCallService } from 'src/app/Services/api-call.service';
+import notify from 'devextreme/ui/notify';
+
 
 @Component({
   selector: 'app-usercart',
@@ -58,6 +60,13 @@ export class UsercartComponent {
   {
      this.apiservice.CheckOutFood(this.userName,this.tableNo,this.mobileNo,this.products).subscribe(res => {
        this.orderData = res ;
+       const message = "Order Placed";
+        notify({
+          message,
+          width: 450,
+        },
+          'success',
+          2000);
      })
    }
 }

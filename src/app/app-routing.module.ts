@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeaderComponent } from './Pages/header/header.component';
-import {ShowOderComponent} from './Pages/show-oder/show-oder.component';
-import { LoginAdminComponent } from './Pages/login-admin/login-admin.component';
-import { SidenavComponent } from './Pages/sidenav/sidenav.component';
-import { UserNavComponent } from './Pages/user-nav/user-nav.component';
-import { UserFoodSelectionComponent } from './Pages/user-food-selection/user-food-selection.component';
+
 import { AuthGuard } from 'src/auth/auth.guard';
 import { AuthService } from 'src/auth/auth.service';
 import { auditTime } from 'rxjs';
-import { AddTocartService } from './Services/add-tocart.service';
-import { UsercartComponent } from './Pages/usercart/usercart.component';
-import { UserDetailsComponent } from './Pages/user-details/user-details.component';
+import { LoginAdminComponent } from './Pages/admin/login-admin/login-admin.component';
+import { SidenavComponent } from './Pages/admin/sidenav/sidenav.component';
+import { ShowOderComponent } from './Pages/admin/show-oder/show-oder.component';
+import { UserDetailsComponent } from './Pages/user/user-details/user-details.component';
+import { UserNavComponent } from './Pages/user/user-nav/user-nav.component';
+import { UserFoodSelectionComponent } from './Pages/user/user-food-selection/user-food-selection.component';
+import { UsercartComponent } from './Pages/user/usercart/usercart.component';
+
 const routes: Routes = [
   
   {path:'', redirectTo:"login",pathMatch:"full"},
