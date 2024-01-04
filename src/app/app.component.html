@@ -3,4 +3,10 @@
 <app-sidenav *ngIf="isLoggedIn">
     <router-outlet ></router-outlet>
 </app-sidenav> -->
-<router-outlet></router-outlet>
+<ngx-ui-loader
+text="Please Wait..."
+></ngx-ui-loader>
+
+<div ngxUiLoaderBlurred (blur)="10">
+    <router-outlet></router-outlet>
+</div>

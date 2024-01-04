@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AddTocartService } from 'src/app/Services/add-tocart.service';
 import { ApiCallService } from 'src/app/Services/api-call.service';
 import notify from 'devextreme/ui/notify';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import notify from 'devextreme/ui/notify';
 })
 export class UsercartComponent {
 
-  constructor(private addtocarddservice : AddTocartService,private apiservice : ApiCallService){}
+  constructor(private addtocarddservice : AddTocartService,private apiservice : ApiCallService,private router:Router){}
 
   public products:any;
   public grandTotal :any;
@@ -47,10 +48,7 @@ export class UsercartComponent {
   emptycart(){
     this.addtocarddservice.removeAllCart();
   }
-
  
-
-
   foodname :any=[];
   orderData :any;
   userName :any;
@@ -68,5 +66,10 @@ export class UsercartComponent {
           'success',
           2000);
      })
+   }
+
+   submit()
+   {
+    this.router.navigate(['/addtocart/foodSelection']);
    }
 }

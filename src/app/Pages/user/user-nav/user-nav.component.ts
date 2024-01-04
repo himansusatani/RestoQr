@@ -14,4 +14,9 @@ export class UserNavComponent {
     
   }
 
+  badgevisible = false;
+
+  badgevisibility() {
+    this.badgevisible = true;
+  }
 }

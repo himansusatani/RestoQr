@@ -1,23 +1,22 @@
+
+<dx-popup [width]="'100%'" [height]="'100%'" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible"
+    title="Select Our Special Food">
 <div class="container" style="border-radius: 5px;">
     <div class=""> 
-        <h1 style="color: #5cb85c;font-weight: bold;text-align: center;">Select Your Food</h1>
-        <h4 style="font-weight: bold;text-align: center;"> Click Here To Order Our Primium Food!! <span><dx-button stylingMode="contained" text="Click Here" type="success" (onClick)="OpenSpecialItem()" [width]="100"></dx-button></span></h4>
+        <h1 style="color: #5cb85c;font-weight: bold;text-align: center;">Select Our Special Food</h1>
         <h4>:) You Can Choose Food By Category</h4>
-        <dx-data-grid  (onCellPrepared)="onGrdFieldSchedulesCellPrepared($event)" class="d-grid-no-batch-actions-filter mt-3" [remoteOperations]="false"
+        <dx-data-grid  class="d-grid-no-batch-actions-filter mt-3" [remoteOperations]="false"
             [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'"
             [dataSource]="data"style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" keyExpr="foodId"
-            [customizeCell]="customizeCell"
+           
             >
 
-            <!-- <dxo-search-panel style="border: 5px solid orange;" [width]="300" [visible]="true" placeholder="Search Your Favourite Food...."></dxo-search-panel> -->
-            <dxo-load-panel [enabled]="true"></dxo-load-panel>
-
-            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-search-panel style="border: 5px solid orange;" [width]="300" [visible]="true" placeholder="Search Your Favourite Food...."></dxo-search-panel>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
             <dxo-group-panel [visible]="true"></dxo-group-panel>
-            <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
-           
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+
             <dxi-column alignment="left" dataField="foodId" caption="Food Id" [width]="80" [ngClass]="'custom-cell-class'"></dxi-column>
             <dxi-column dataField="foodCategory" caption="Category"[groupIndex]="0"></dxi-column>
             <dxi-column  dataField="foodName" caption="Food Name"></dxi-column>
@@ -37,5 +36,5 @@
             </div>
         </dx-data-grid>
     </div>
-    <router-outlet></router-outlet>
 </div>
+</dx-popup>

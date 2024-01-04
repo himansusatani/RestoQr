@@ -7,24 +7,23 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AddTocartService {
 
-  public cartItemList : any =[]
+  public cartItemList: any = []
   public data = new BehaviorSubject<any>([]);
   public search = new BehaviorSubject<string>("");
 
   constructor() { }
-  getProducts(){
-    return this.data.asObservable();  
+  getProducts() {
+    return this.data.asObservable();
   }
 
-  setProduct(product : any){
+  setProduct(product: any) {
     this.cartItemList.push(...product);
     this.data.next(product);
   }
-  addtoCart(data : any){
+  addtoCart(data: any) {
     this.cartItemList.push(data);
     this.data.next(this.cartItemList);
-    if(this.cartItemList != null)
-    {
+    if (this.cartItemList != null) {
       const message = "SuccessFully Add To Cart...!!!";
       notify({
         message,
@@ -33,7 +32,7 @@ export class AddTocartService {
         'success',
         1000);
     }
-    else{
+    else {
       const message = "Wrong Try ,,Please Try Again...!!!";
       notify({
         message,
@@ -45,24 +44,20 @@ export class AddTocartService {
     this.getTotalPrice();
   }
 
-  getTotalPrice() : number{
+  getTotalPrice(): number {
     let grandTotal = 0;
-    this.cartItemList.map((a:any)=>{
-     grandTotal = grandTotal + a.foodPrice;
+    this.cartItemList.map((a: any) => {
+      grandTotal = grandTotal + a.foodPrice;
     })
     return grandTotal;
   }
 
-  removeCartItem(data: any){
-    this.cartItemList.map((a:any, index:any)=>{
-      if(data.id=== a.id){
-        this.cartItemList.splice(index,1);
-      }
-    })
+  removeCartItem(data: any) {
+    this.cartItemList.splice(this.cartItemList.indexOf(data), 1);
     this.data.next(this.cartItemList);
   }
 
-  removeAllCart(){
+  removeAllCart() {
     this.cartItemList = []
     this.data.next(this.cartItemList);
   }

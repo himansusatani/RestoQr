@@ -11,6 +11,15 @@ import { UserDetailsComponent } from './Pages/user/user-details/user-details.com
 import { UserNavComponent } from './Pages/user/user-nav/user-nav.component';
 import { UserFoodSelectionComponent } from './Pages/user/user-food-selection/user-food-selection.component';
 import { UsercartComponent } from './Pages/user/usercart/usercart.component';
+import { DashboardComponent } from './Pages/admin/dashboard/dashboard.component';
+import { AllOrderComponent } from './Pages/admin/all-order/all-order.component';
+import { SpecialFoodMenuComponent } from './Pages/user/special-food-menu/special-food-menu.component';
+import { SettingComponent } from './Pages/admin/setting/setting.component';
+import { DetailsComponent } from './Pages/admin/AddFoodMenu/details/details.component';
+import { ListComponent } from './Pages/admin/AddFoodMenu/list/list.component';
+import { SpecialFoodDetailsComponent } from './Pages/admin/AddSpecialFoodMenu/special-food-details/special-food-details.component';
+import { SpecialfoodlistComponent } from './Pages/admin/AddSpecialFoodMenu/specialfoodlist/specialfoodlist.component';
+import { OrderStatusComponent } from './Pages/user/order-status/order-status.component';
 
 const routes: Routes = [
   
@@ -18,15 +27,24 @@ const routes: Routes = [
   {path:'login',component:LoginAdminComponent},
   {path:'sidenav',component:SidenavComponent ,children:[
     {path:'',pathMatch:"full", redirectTo:"showorder"},
-    {path:'showorder', component:ShowOderComponent}
+    {path:'showorder', component:ShowOderComponent},
+    {path:'dashboard',component:DashboardComponent},
+    {path:'allorder',component:AllOrderComponent},
+    {path:'setting',component:SettingComponent},
+    {path:'addFoodMenu',component:DetailsComponent},
+    {path:'listFoodMenu',component:ListComponent},
+    {path:'addSpecialFood',component:SpecialFoodDetailsComponent},
+    {path:'listSpecialFood',component:SpecialfoodlistComponent},
   ]},
-
+  
   {path:'userheader',component:UserNavComponent,children:[
     {path:'',pathMatch:"full",redirectTo:"userdetail"},
+    {path:'specialFood',component:SpecialFoodMenuComponent},
     {path:'userdetail',component:UserDetailsComponent},
     {path:'foodSelection',component:UserFoodSelectionComponent},
-    {path:'addtocart',component:UsercartComponent}
-  ]}
+    {path:'addtocart',component:UsercartComponent},
+    {path:'orderStatus',component:OrderStatusComponent}
+  ]},
 ];
 
 @NgModule({

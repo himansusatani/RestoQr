@@ -1,0 +1,28 @@
+<div class="content-block dx-card responsive-paddings">
+    <div class="d-con-no-filter-grid-flex-row">
+        <h1 style="color: rgb(57, 54, 54);font-weight: bold;">Show All Order</h1>
+        <dx-data-grid class="d-grid-no-batch-actions-filter" [remoteOperations]="false" [allowColumnReordering]="true"
+            [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'" [dataSource]="data" keyExpr="id">
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+            <dxi-column dataField="id" caption="Id" [width]="90"></dxi-column>
+            <dxi-column dataField="status" caption="Status" [width]="90"></dxi-column>
+            <dxi-column dataField="userid" caption="UserId" [width]="90"></dxi-column>
+            <dxi-column dataField="orderId" caption="OrderId." [width]="80"></dxi-column>
+            <dxi-column dataField="tableno" caption="TableNo" [width]="90"></dxi-column>
+            <dxi-column dataField="username" caption="UserName" [width]="90"></dxi-column>
+            <dxi-column dataField="foodid" caption="FoodId" [width]="90"></dxi-column>
+            <dxi-column dataField="foodname" caption="FoodName" [groupIndex]="0"[width]="110"></dxi-column>
+            <dxi-column dataField="foodprice" caption="FoodPrice" [width]="110"></dxi-column>
+            <dxi-column dataField="fooddescription" caption="FoodDescription" [width]="110"></dxi-column>
+            <dxo-summary>
+                <dxi-total-item column="userid" summaryType="count">
+                </dxi-total-item>
+            </dxo-summary>
+        </dx-data-grid>
+    </div>
+</div>

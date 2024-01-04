@@ -18,23 +18,23 @@
 
             <img src="../../../assets/Images/logo.png" alt="">
 
-            <mat-list-item>
-                <button class="btn" routerLink="card" mat-button><mat-icon>dashboard</mat-icon> Dashboard</button>
+            <mat-list-item routerLink="dashboard">
+                <a class="link"  routerLink="dashboard"><mat-icon >dashboard</mat-icon> Dashboard</a>
             </mat-list-item>
             <mat-list-item routerLink="showorder">
-                <button class="btn" routerLink="showorder" mat-button><mat-icon>home</mat-icon> ShowOrder</button>
+                <a class="link" routerLink="showorder"><mat-icon>home</mat-icon> ShowOrder</a>
+            </mat-list-item>
+            <mat-list-item routerLink="allorder">
+                <a class="link" routerLink="allorder" ><mat-icon>table</mat-icon> AllOrder</a>
+            </mat-list-item>
+            <mat-list-item routerLink="setting">
+                <a class="link" routerLink="setting" ><mat-icon>settings</mat-icon> Settings</a>
             </mat-list-item>
             <mat-list-item>
-                <button class="btn" routerLink="table" mat-button><mat-icon>table</mat-icon> AllOrder</button>
+                <a><mat-icon>help</mat-icon> Help</a>
             </mat-list-item>
             <mat-list-item>
-                <button class="btn" mat-button><mat-icon>settings</mat-icon> Settings</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button class="btn" mat-button><mat-icon>help</mat-icon> Help</button>
-            </mat-list-item>
-            <mat-list-item>
-                <button class="btn" mat-button><mat-icon>analytics</mat-icon> analytics</button>
+                <a><mat-icon>analytics</mat-icon> analytics</a>
             </mat-list-item>
         </mat-nav-list>
     </mat-drawer>

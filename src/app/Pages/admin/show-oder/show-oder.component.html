@@ -22,8 +22,10 @@
                 <span class="ms-2">
                     <dx-button stylingMode="contained" text="Cancle" type="danger" [width]="100"></dx-button>
                 </span> -->
-                <dx-button stylingMode="contained" text="Manage" type="success" (onClick)="manage(data.data.orderId)"
-                    [width]="100"></dx-button>
+                <dx-button stylingMode="contained" text="Manage" style="background-color: black; color:whitesmoke"
+                    (onClick)="manage(data.data.orderId)" [width]="100"></dx-button>
+                <dx-button stylingMode="contained" text="Manage" style="background-color: rgb(21, 0, 255); color:whitesmoke"
+                    (onClick)="pdfGenerate(data.data.orderId)" [width]="100"></dx-button>
 
             </div>
             <dxo-summary>
@@ -33,33 +35,44 @@
         </dx-data-grid>
     </div>
 </div>
-<!-- <ngx-extended-pdf-viewer [src]="pdfurl"></ngx-extended-pdf-viewer> -->
 
+<ngx-extended-pdf-viewer [src]="pdfurl">
+<dx-popup [width]="'100%'" [height]="'100%'" [hideOnOutsideClick]="true" [showCloseButton]="true"
+    [(visible)]="popupVisible" title="Manage Order">
+</dx-popup>
+</ngx-extended-pdf-viewer>
 
-<dx-popup [width]="'100%'" [height]="'100%'" [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible"
-    title="Manage Order">
-        <div>
-            <dx-data-grid class="d-grid-no-batch-actions-filter" [remoteOperations]="false"
-                [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'"
-                [dataSource]="orderData" keyExpr="orderId">
-                <dxo-search-panel [visible]="true"></dxo-search-panel>
-                <dxo-filter-row [visible]="true"></dxo-filter-row>
-                <dxo-header-filter [visible]="true"></dxo-header-filter>
-                <dxo-group-panel [visible]="true"></dxo-group-panel>
-                <dxo-scrolling mode="virtual"></dxo-scrolling>
+<dx-popup [width]="'100%'" [height]="'100%'" [hideOnOutsideClick]="true" [showCloseButton]="true"
+    [(visible)]="popupVisible" title="Manage Order">
+    <div>
+        <dx-data-grid class="d-grid-no-batch-actions-filter" [remoteOperations]="false" [allowColumnReordering]="true"
+            [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'" [dataSource]="orderData"
+            keyExpr="orderId">
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
 
-                <dxi-column dataField="tableno" caption="Table No" ></dxi-column>
-                <dxi-column dataField="orderId" caption="Order Id."></dxi-column>
-                <dxi-column dataField="userId" caption="User Id"></dxi-column>
-                <dxi-column dataField="username" caption="UserName" ></dxi-column>
-                <dxi-column dataField="foodId" caption="Food Id" ></dxi-column>
-                <dxi-column dataField="foodname" caption="Food Name" ></dxi-column>
-                <dxi-column dataField="fooddescription" caption="Food Description" ></dxi-column>
-                <dxi-column dataField="foodprice" caption="Food Price" ></dxi-column>
+            <dxi-column dataField="tableno" caption="Table No"></dxi-column>
+            <dxi-column dataField="orderId" caption="Order Id."></dxi-column>
+            <dxi-column dataField="userId" caption="User Id"></dxi-column>
+            <dxi-column dataField="username" caption="UserName"></dxi-column>
+            <dxi-column dataField="foodId" caption="Food Id"></dxi-column>
+            <dxi-column dataField="foodname" caption="Food Name"></dxi-column>
+            <dxi-column dataField="fooddescription" caption="Food Description"></dxi-column>
+            <dxi-column dataField="foodprice" caption="Food Price"></dxi-column>
 
-            </dx-data-grid>
-        </div>
-        <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="center">
-            <!-- [options]="bookButtonOptions" -->
-        </dxi-toolbar-item>
+        </dx-data-grid>
+    </div>
+
+    <td colspan=""></td>
+    <td><strong>Grand Total : {{grandTotal}} </strong></td>
+    <td><dx-button stylingMode="contained" text="Cancle" style="background-color:#bb2124; color:whitesmoke"
+            (onClick)="CancleOrder(orderData)" [width]="100"></dx-button></td>
+    <td><dx-button stylingMode="contained" text="Accept" style="background-color:#5cb85c; color:whitesmoke"
+            (onClick)="AcceptOrder()" [width]="100"></dx-button></td>
+
+    <!-- <td><button  class="btn btn-danger" (onClick)="CancleOrder(orderData)">Cancle</button></td> -->
+    <!-- <td><button class="btn btn-success ms-3">Accept</button></td> -->
 </dx-popup>
