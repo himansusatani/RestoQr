@@ -84,5 +84,6 @@ export class ShowOderComponent {
       'success',
       2000);
       //this.CancleOrder(this.orderData);
+      this.popupVisible=false;
   }
 }
