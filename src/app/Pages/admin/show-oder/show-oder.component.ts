@@ -17,7 +17,8 @@ export class ShowOderComponent {
   data: any[] = [];
   orderData: any[] = [];
   pdfurl = '';
-  constructor(private location: Location, private apiservice: ApiCallService, private http: HttpClient, private addtocarddservice: AddTocartService, private router: Router, private route: ActivatedRoute) { this.GetOrderData(); }
+  orderId : any;
+  constructor(private location: Location, private apiservice: ApiCallService, private http: HttpClient, private addtocarddservice: AddTocartService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.GetOrderData();
@@ -25,6 +26,7 @@ export class ShowOderComponent {
 
   GetOrderData() {
     this.apiservice.GetallorderData().subscribe(res => {
+      console.log('res',res);
       this.data = res;
     });
   }
@@ -35,13 +37,13 @@ export class ShowOderComponent {
     })
     this.popupVisible = true;
     this.getTotalPrice(orderId);
+    this.orderId = orderId;
   }
   pdfGenerate(orderId:any)
   {
     this.apiservice.GeneratePdf(orderId).subscribe(
       (res)=>{
         this.pdfurl = res;
-        
       }
     )
   }
@@ -59,6 +61,7 @@ export class ShowOderComponent {
     for (const data of deleteOrderData) {
       idArray.push(data.orderId)
       this.apiservice.DeleteOrderByOrderId(idArray,this.orderData,status).subscribe(res => {
+        this.data = res;
         const message = "Order Canceld!!";
         notify({
           message,
@@ -67,10 +70,13 @@ export class ShowOderComponent {
           'error',
           2000);
       })
+      
+      // this.apiservice.GetallorderData().subscribe(res => {
+      //   this.data = res;
+      // })
     }
     this.popupVisible = false;
     // this.location.back();
-    this.GetOrderData();
   }
   AcceptOrder() {
     var status = "Success"
@@ -85,5 +91,7 @@ export class ShowOderComponent {
       2000);
       //this.CancleOrder(this.orderData);
       this.popupVisible=false;
+      
+
   }
 }
