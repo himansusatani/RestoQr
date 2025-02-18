@@ -1,0 +1,51 @@
+/* Ensure the content block and grid are responsive */
+.content-block {
+    margin: 10px;
+    overflow-x: auto; /* Ensure horizontal scrolling when necessary */
+  }
+  
+  .d-con-no-filter-grid-flex-row {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    /* Mobile-specific styles */
+    .dx-data-grid {
+      width: 100%;
+      height: 250px; /* Adjust height for mobile */
+    }
+  
+    .dx-popup {
+      width: 90%; /* Ensure the popup doesn't overflow */
+      height: 80%;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* Tablet-specific styles */
+    .dx-data-grid {
+      width: 100%;
+      height: 300px; /* Adjust height for tablets */
+    }
+  
+    .dx-popup {
+      width: 80%;
+      height: 80%;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    /* Desktop-specific styles */
+    .dx-data-grid {
+      width: 100%;
+      height: 400px;
+    }
+  
+    .dx-popup {
+      width: 60%;
+      height: 70%;
+    }
+  }
+  

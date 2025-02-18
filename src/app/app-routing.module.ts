@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from 'src/auth/auth.guard';
+//import { AuthGuard } from 'src/auth/auth.guard';
+import {authGuard} from 'src/auth/auth.guard';
 import { AuthService } from 'src/auth/auth.service';
 import { auditTime } from 'rxjs';
 import { LoginAdminComponent } from './Pages/admin/login-admin/login-admin.component';
@@ -20,21 +21,23 @@ import { ListComponent } from './Pages/admin/AddFoodMenu/list/list.component';
 import { SpecialFoodDetailsComponent } from './Pages/admin/AddSpecialFoodMenu/special-food-details/special-food-details.component';
 import { SpecialfoodlistComponent } from './Pages/admin/AddSpecialFoodMenu/specialfoodlist/specialfoodlist.component';
 import { OrderStatusComponent } from './Pages/user/order-status/order-status.component';
+import { ForgotPasswordComponent } from './Pages/admin/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   
   {path:'', redirectTo:"login",pathMatch:"full"},
   {path:'login',component:LoginAdminComponent},
+  {path:'forgotPassword', component:ForgotPasswordComponent},
   {path:'sidenav',component:SidenavComponent ,children:[
     {path:'',pathMatch:"full", redirectTo:"showorder"},
-    {path:'showorder', component:ShowOderComponent},
-    {path:'dashboard',component:DashboardComponent},
-    {path:'allorder',component:AllOrderComponent},
-    {path:'setting',component:SettingComponent},
-    {path:'addFoodMenu',component:DetailsComponent},
-    {path:'listFoodMenu',component:ListComponent},
-    {path:'addSpecialFood',component:SpecialFoodDetailsComponent},
-    {path:'listSpecialFood',component:SpecialfoodlistComponent},
+    {path:'showorder', component:ShowOderComponent },
+    {path:'dashboard',component:DashboardComponent },
+    {path:'allorder',component:AllOrderComponent },
+    {path:'setting',component:SettingComponent },
+    {path:'addFoodMenu',component:DetailsComponent },
+    {path:'listFoodMenu',component:ListComponent },
+    {path:'addSpecialFood',component:SpecialFoodDetailsComponent },
+    {path:'listSpecialFood',component:SpecialfoodlistComponent },
   ]},
   
   {path:'userheader',component:UserNavComponent,children:[
@@ -45,6 +48,8 @@ const routes: Routes = [
     {path:'addtocart',component:UsercartComponent},
     {path:'orderStatus',component:OrderStatusComponent}
   ]},
+  // {path:'',redirectTo:'dashboard', pathMatch:'full'},
+  // {path:'dashboard', component:DashboardComponent},
 ];
 
 @NgModule({

@@ -64,5 +64,8 @@ export class LoginAdminComponent {
   return this.loginform.get('password')
 }
  
+isLoggedIn():any{
+  return this.isLoggedIn;
+}
 
 }

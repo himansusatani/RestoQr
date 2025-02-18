@@ -12,3 +12,7 @@
     text-decoration: none;
     color: #000;
 }
+.example-container {
+    height: auto; /* Full height layout */
+  }
+  

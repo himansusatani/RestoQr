@@ -70,6 +70,6 @@ export class UsercartComponent {
 
    submit()
    {
-    this.router.navigate(['/addtocart/foodSelection']);
+    this.router.navigate(['/userheader/foodSelection']);
    }
 }

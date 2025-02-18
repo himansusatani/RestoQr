@@ -47,7 +47,7 @@ export class ApiCallService {
   DeleteOrderByOrderId(orderId:any,obj:any,status:any)
   {
     return this.http.post<any>(this.baseurl+'ShowOrder/DeleteOrder?orderId='+orderId+'&status='+status,obj);
-  }
+  } 
 
   AcceptOrder(obj:any,status:any)
   {
@@ -73,5 +73,10 @@ export class ApiCallService {
   CheckOutFood(username:any , tableno:any , mobileno:any ,obj:any)
   {
     return this.http.post<any>(this.baseurl+"OrderFood/InserOrderAndUser?username="+username +"&tableno="+tableno+"&mobileno="+mobileno,obj);
+  }
+
+  SendRestPasswordLink(email:any){
+     return this.http.post<any>(this.baseurl+'EmailSend/'+'send-reset-email/'+email,{});
+    //return this.http.post<any>(`${this.baseurl}EmailSend/send-reset-email/${email}`,{})
   }
 }

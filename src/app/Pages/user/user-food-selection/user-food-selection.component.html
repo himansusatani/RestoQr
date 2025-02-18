@@ -1,26 +1,31 @@
 <div class="container" style="border-radius: 5px;">
-    <div class=""> 
+    <div class="">
         <h1 style="color: #5cb85c;font-weight: bold;text-align: center;">Select Your Food</h1>
-        <h4 style="font-weight: bold;text-align: center;"> Click Here To Order Our Primium Food!! <span><dx-button stylingMode="contained" text="Click Here" type="success" (onClick)="OpenSpecialItem()" [width]="100"></dx-button></span></h4>
-        <h4>:) You Can Choose Food By Category</h4>
-        <dx-data-grid  (onCellPrepared)="onGrdFieldSchedulesCellPrepared($event)" class="d-grid-no-batch-actions-filter mt-3" [remoteOperations]="false"
-            [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'"
-            [dataSource]="data"style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" keyExpr="foodId"
-            [customizeCell]="customizeCell"
-            >
-
+        <h4 style="font-weight: bold;text-align: center;"> Click Here To Order Our Primium Food!! <span><dx-button
+                    stylingMode="contained" text="Click Here" type="success" (onClick)="OpenSpecialItem()"
+                    [width]="100"></dx-button></span></h4>
+        <!-- <h4>:) You Can Choose Food By Category</h4> -->
+        <dx-data-grid (onCellPrepared)="onGrdFieldSchedulesCellPrepared($event)"
+            [remoteOperations]="false" [allowColumnReordering]="true"
+            [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'" [dataSource]="data"
+            keyExpr="foodId"
+            [allowColumnResizing]="true"
+            [customizeCell]="customizeCell">
+            <!-- style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" -->
             <!-- <dxo-search-panel style="border: 5px solid orange;" [width]="300" [visible]="true" placeholder="Search Your Favourite Food...."></dxo-search-panel> -->
             <dxo-load-panel [enabled]="true"></dxo-load-panel>
-
+            <dxo-scrolling mode="virtual" [useNative]="false"></dxo-scrolling>
             <dxo-search-panel [visible]="true"></dxo-search-panel>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
             <dxo-group-panel [visible]="true"></dxo-group-panel>
             <!-- <dxo-scrolling mode="virtual"></dxo-scrolling> -->
-           
-            <dxi-column alignment="left" dataField="foodId" caption="Food Id" [width]="80" [ngClass]="'custom-cell-class'"></dxi-column>
-            <dxi-column dataField="foodCategory" caption="Category"[groupIndex]="0"></dxi-column>
-            <dxi-column  dataField="foodName" caption="Food Name"></dxi-column>
+            <dxo-state-storing [enabled]="true"  type="custom" >
+            </dxo-state-storing>
+            <dxi-column alignment="left" dataField="foodId" caption="Food Id" [width]="80"
+                [ngClass]="'custom-cell-class'"></dxi-column>
+            <dxi-column dataField="foodCategory" caption="Category" [groupIndex]="0"></dxi-column>
+            <dxi-column dataField="foodName" caption="Food Name"></dxi-column>
             <dxi-column alignment="left" dataField="foodPrice" caption="Food Price"></dxi-column>
             <dxi-column dataField="foodDescription" caption="Food Description"></dxi-column>
             <dxi-column cellTemplate="cellTemplate" caption="Action" [width]="120"></dxi-column>
@@ -32,10 +37,11 @@
                 <span class="ms-2">
                     <dx-button stylingMode="contained" text="Cancle" type="danger" [width]="100"></dx-button>
                 </span> -->
-                <dx-button stylingMode="contained" text="Add" type="success" (onClick)="addtocart(data.data)"  [width]="100"></dx-button>
+                <dx-button stylingMode="contained" text="Add" type="success" (onClick)="addtocart(data.data)"
+                    [width]="100"></dx-button>
 
             </div>
         </dx-data-grid>
     </div>
-    <router-outlet></router-outlet>
+    <router-outlet ></router-outlet>
 </div>

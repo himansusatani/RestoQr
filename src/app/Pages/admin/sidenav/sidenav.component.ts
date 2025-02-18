@@ -1,9 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
+import { navbarData } from './nav-data';
 
+interface SideNavToggle {
+  screenWidth: number;
+  collapsed: boolean;
+}
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -29,8 +34,9 @@ export class SidenavComponent {
           2000);
     this.route.navigate(['/login']);
   }
-
+  
   ngOnInit(){
+    //this.screenWidth = window.innerWidth;
     this.items = [{
       text: 'Share',
       items: [
@@ -42,6 +48,34 @@ export class SidenavComponent {
     { text: 'Favorite' },
     ]
   }
+
+  @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
+  collapsed = false;
+  screenWidth = 0;
+  navData = navbarData;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth <= 768) {
+      this.collapsed = false;
+      this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
+    }
+  }
+
+
+  toggleCollapse(): void {
+    this.collapsed = !this.collapsed;
+    this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
+  }
+
+  closeSidenav(): void {
+    this.collapsed = false;
+    this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
+  }
+
+
+
   ngAfterViewInit() {
     this.observer.observe(["(max-width: 800px)"]).subscribe((res) => {
       if (res.matches) {

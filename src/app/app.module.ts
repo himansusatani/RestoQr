@@ -76,6 +76,8 @@ import { SpecialFoodDetailsComponent } from './Pages/admin/AddSpecialFoodMenu/sp
 import { SpecialfoodlistComponent } from './Pages/admin/AddSpecialFoodMenu/specialfoodlist/specialfoodlist.component';
 import { OrderStatusComponent } from './Pages/user/order-status/order-status.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { BodyComponent } from './Pages/body/body.component';
+import { authGuard } from 'src/auth/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -98,6 +100,7 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     SpecialFoodDetailsComponent,
     SpecialfoodlistComponent,
     OrderStatusComponent,
+    BodyComponent,
     
   ],
   imports: [
