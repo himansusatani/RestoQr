@@ -22,41 +22,77 @@
    <router-outlet></router-outlet>
 </div> -->
 
-
-
-
-<mat-toolbar  class="" style="background-color: #E0E0E0;">
+<mat-toolbar class="" style="background-color: #E0E0E0;">
   <button class="btn" (click)="drawer.toggle()" mat-icon-button>
-      <mat-icon>menu</mat-icon>
+    <mat-icon>menu</mat-icon>
   </button>
   <span>RestoQr</span>
   <span class="example-spacer"></span>
   <button class="btn" (click)="badgevisibility()" mat-icon-button>
-      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible"
-          matBadgeSize="small">notifications</mat-icon>
+    <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible"
+      matBadgeSize="small">notifications</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+
+      <img src="../../../assets/Images/logo.png" alt="">
+
+      <mat-list-item routerLink="foodSelection">
+        <a class="link" routerLink="foodSelection" mat-button><mat-icon> restaurant</mat-icon> SelectFood</a>
+      </mat-list-item>
+      <mat-list-item routerLink="showorder">
+        <a class="link" routerLink="addtocart" mat-button><mat-icon>add_shopping_cart</mat-icon> Cart</a>
+      </mat-list-item>
+      <mat-list-item routerLink="userdetail">
+        <a class="link" routerLink="userdetail" mat-button><mat-icon>person</mat-icon> YourDetails</a>
+      </mat-list-item>
+      <mat-list-item routerLink="orderStatus">
+        <a class="link" routerLink="orderStatus" mat-button><mat-icon>query_builder</mat-icon> Order Status</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="text-align: center;min-height: 600px;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+<!-- <mat-toolbar class="" style="background-color: #E0E0E0;">
+  <button class="btn" (click)="drawer.toggle()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>RestoQr</span>
+  <span class="example-spacer"></span>
+  <button class="btn" (click)="badgevisibility()" mat-icon-button>
+    <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible"
+      matBadgeSize="small">notifications</mat-icon>
   </button>
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
   <mat-sidenav #drawer opened="true" mode="side" position="start">
-      <mat-nav-list>
+    <mat-nav-list>
 
-          <img src="../../../assets/Images/logo.png" alt="">
+      <img src="../../../assets/Images/logo.png" alt="">
 
-          <mat-list-item routerLink="foodSelection">
-              <a class="link" routerLink="foodSelection" mat-button><mat-icon> restaurant</mat-icon> SelectFood</a>
-          </mat-list-item>
-          <mat-list-item routerLink="showorder">
-              <a class="link" routerLink="addtocart" mat-button><mat-icon>add_shopping_cart</mat-icon> Cart</a>
-          </mat-list-item>
-          <mat-list-item routerLink="userdetail">
-              <a class="link" routerLink="userdetail" mat-button><mat-icon>person</mat-icon> YourDetails</a>
-          </mat-list-item>
-           <mat-list-item routerLink="orderStatus">
-              <a class="link" routerLink="orderStatus" mat-button><mat-icon>query_builder</mat-icon> Order Status</a>
-          </mat-list-item>
-      </mat-nav-list>
+      <mat-list-item routerLink="foodSelection">
+        <a class="link" routerLink="foodSelection" mat-button><mat-icon> restaurant</mat-icon> SelectFood</a>
+      </mat-list-item>
+      <mat-list-item routerLink="showorder">
+        <a class="link" routerLink="addtocart" mat-button><mat-icon>add_shopping_cart</mat-icon> Cart</a>
+      </mat-list-item>
+      <mat-list-item routerLink="userdetail">
+        <a class="link" routerLink="userdetail" mat-button><mat-icon>person</mat-icon> YourDetails</a>
+      </mat-list-item>
+      <mat-list-item routerLink="orderStatus">
+        <a class="link" routerLink="orderStatus" mat-button><mat-icon>query_builder</mat-icon> Order Status</a>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->

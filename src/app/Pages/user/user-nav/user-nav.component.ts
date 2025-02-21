@@ -1,4 +1,6 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { AddTocartService } from 'src/app/Services/add-tocart.service';
 
 @Component({
@@ -7,8 +9,9 @@ import { AddTocartService } from 'src/app/Services/add-tocart.service';
   styleUrls: ['./user-nav.component.css']
 })
 export class UserNavComponent {
-  constructor(private addtocard:AddTocartService){}
-
+  constructor(private observer: BreakpointObserver,private addtocard:AddTocartService){}
+    sidenav!: MatSidenav;
+  
   ngOnInit():void
   {
     
@@ -16,7 +19,18 @@ export class UserNavComponent {
 
   badgevisible = false;
 
+  ngAfterViewInit() {
+    this.observer.observe(["(max-width: 800px)"]).subscribe((res) => {
+      if (res.matches) {
+        this.sidenav.mode = "over";
+        this.sidenav.close();
+      } else {
+        this.sidenav.mode = "side";
+        this.sidenav.open();
+      }
+    });
+  }
   badgevisibility() {
-    this.badgevisible = true;
+    this.badgevisible = !this.badgevisible;
   }
 }

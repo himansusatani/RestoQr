@@ -2,7 +2,7 @@
     <div class="d-con-no-filter-grid-flex-row">
         <h1 style="color: rgb(57, 54, 54);font-weight: bold;">Show All Order</h1>
         <dx-data-grid class="d-grid-no-batch-actions-filter" [remoteOperations]="false" [allowColumnReordering]="true"
-            [rowAlternationEnabled]="true" [showBorders]="true" [height]="gridHeight" [width]="gridWidth" [dataSource]="data" keyExpr="id">
+            [rowAlternationEnabled]="true" [showBorders]="true" [height]="gridHeight" [width]="'100%'" [dataSource]="data" keyExpr="id">
             <dxo-search-panel [visible]="true"></dxo-search-panel>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>

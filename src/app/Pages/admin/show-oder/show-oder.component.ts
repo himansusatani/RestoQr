@@ -23,6 +23,7 @@ export class ShowOderComponent implements OnInit{
   gridHeight: number = 400; // Default grid height
   popupWidth: string = '80%'; // Default popup width
   popupHeight: string = '80%'; // Default popup height
+  columnWidths: any = {}; // To hold the dynamic column widths
 
   constructor(private location: Location, private apiservice: ApiCallService, private http: HttpClient, private addtocarddservice: AddTocartService, private router: Router, private route: ActivatedRoute,
   ) { }
@@ -151,6 +152,45 @@ export class ShowOderComponent implements OnInit{
     } else {
       this.popupWidth = '60%';
       this.popupHeight = '70%';
+    }
+  }
+
+  // Function to adjust the grid width and column widths based on the window size
+  adjustGridDimensions(): void {
+    const windowWidth = window.innerWidth;
+
+    // Adjust grid height dynamically based on window height
+    this.gridHeight = window.innerHeight - 150; // Adjust this based on other UI components
+
+    // Adjust column widths based on screen size
+    if (windowWidth < 768) {
+      // For mobile devices, set columns to smaller widths
+      this.columnWidths = {
+        userid: 70,
+        orderId: 70,
+        username: 70,
+        mobileno: 60,
+        btn: 70,
+        
+      };
+    } else if (windowWidth < 1024) {
+      // For tablet devices
+      this.columnWidths = {
+        userid: 90,
+        orderId: 80,
+        username: 90,
+        mobileno: 90,
+        btn: 90,
+        };
+    } else {
+      // For desktop devices
+      this.columnWidths = {
+        userid: 90,
+        orderId: 80,
+        username: 90,
+        mobileno: 90,
+        btn: 120,
+      };
     }
   }
 }

@@ -6,8 +6,8 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiCallService {
-  baseurl = 'https://localhost:7202/api/';
-
+ // baseurl = 'https://localhost:7202/api/';
+    baseurl = 'http://192.168.0.15:5000/api/'
   constructor(private http:HttpClient) { }
 
   public GetallorderData()

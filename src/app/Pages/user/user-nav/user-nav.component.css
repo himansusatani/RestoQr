@@ -1,18 +1,88 @@
-.custome {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-    color: black;
-}
-
-.example-spacer {
-    flex: 1 1 auto;
-}
-
-.link {
+/* General Styles for the Toolbar and Drawer */
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 56px; /* Set height for the toolbar */
+  }
+  
+  mat-drawer-container {
+    display: flex;
+  }
+  
+  mat-drawer {
+    width: 250px; /* Set the default width for the sidebar */
+  }
+  
+  .mat-drawer-content {
+    flex-grow: 1;
+  }
+  
+  /* Adjust the drawer container for small screens */
+  @media (max-width: 600px) {
+    mat-drawer {
+      width: 200px; /* Smaller width for smaller screens */
+    }
+  
+    mat-drawer-content {
+      padding: 10px;
+    }
+  
+    /* For the menu icon on smaller screens */
+    mat-toolbar button {
+      display: block;
+    }
+  }
+  
+  /* Hide the drawer by default on small screens */
+  @media (max-width: 600px) {
+    mat-drawer {
+      display: none; /* Hide the drawer on small screens */
+    }
+  
+    /* Show the drawer when it's toggled */
+    mat-drawer.opened {
+      display: block;
+    }
+  
+    .example-spacer {
+      display: none; /* Remove spacer on mobile */
+    }
+  }
+  
+  /* Adjust the width of the sidebar for larger screens */
+  @media (min-width: 600px) {
+    mat-drawer {
+      width: 250px; /* Wider sidebar on larger screens */
+    }
+  }
+  
+  /* Styling for links in the sidebar */
+  mat-list-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  mat-list-item a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    color: #000;
-}
-.example-container {
-    height: auto; /* Full height layout */
+    color: black;
+    padding: 10px;
+  }
+  
+  mat-list-item a:hover {
+    background-color: #f1f1f1; /* Add a hover effect for links */
+  }
+  
+  /* Optional: Style the logo inside the drawer */
+  mat-nav-list img {
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 200px; /* Adjust the logo size */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
   

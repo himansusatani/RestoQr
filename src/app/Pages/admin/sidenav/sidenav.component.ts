@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
@@ -16,6 +16,8 @@ interface SideNavToggle {
 })
 export class SidenavComponent {
   showFiller = false;
+  @ViewChild('drawer') drawer!: MatDrawer;
+  badgevisible = false;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   
@@ -87,9 +89,7 @@ export class SidenavComponent {
       }
     });
   }
-  badgevisible = false;
-
   badgevisibility() {
-    this.badgevisible = true;
+    this.badgevisible = !this.badgevisible;
   }
 }
