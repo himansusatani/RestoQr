@@ -22,12 +22,14 @@ import { SpecialFoodDetailsComponent } from './Pages/admin/AddSpecialFoodMenu/sp
 import { SpecialfoodlistComponent } from './Pages/admin/AddSpecialFoodMenu/specialfoodlist/specialfoodlist.component';
 import { OrderStatusComponent } from './Pages/user/order-status/order-status.component';
 import { ForgotPasswordComponent } from './Pages/admin/forgot-password/forgot-password.component';
+import { ResetComponent } from './Pages/reset/reset.component';
 
 const routes: Routes = [
   
   {path:'', redirectTo:"login",pathMatch:"full"},
   {path:'login',component:LoginAdminComponent},
   {path:'forgotPassword', component:ForgotPasswordComponent},
+  {path:'reset',component:ResetComponent},
   {path:'sidenav',component:SidenavComponent ,children:[
     {path:'',pathMatch:"full", redirectTo:"showorder"},
     {path:'showorder', component:ShowOderComponent },

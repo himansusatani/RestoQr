@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
+import { ResetPassword } from './reset-password/reset-password.module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiCallService {
- // baseurl = 'https://localhost:7202/api/';
+ //baseurl = 'https://localhost:7202/api/';
     baseurl = 'http://192.168.0.15:5000/api/'
   constructor(private http:HttpClient) { }
 
@@ -78,5 +79,9 @@ export class ApiCallService {
   SendRestPasswordLink(email:any){
      return this.http.post<any>(this.baseurl+'EmailSend/'+'send-reset-email/'+email,{});
     //return this.http.post<any>(`${this.baseurl}EmailSend/send-reset-email/${email}`,{})
+  }
+
+  ResetPassword(resetPasswordObj: ResetPassword){
+    return this.http.post<any>(this.baseurl+'AdminLogin/reset-password',resetPasswordObj)
   }
 }

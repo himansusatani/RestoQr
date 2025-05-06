@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, HostListener } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/Services/api-call.service';
 import notify from 'devextreme/ui/notify';
@@ -11,8 +11,15 @@ import notify from 'devextreme/ui/notify';
   styleUrls: ['./login-admin.component.css']
 })
 export class LoginAdminComponent {
+  
+  forgotPasswordForm: FormGroup;
+  popupVisible: boolean = false; // Flag for popup visibility
+  popupWidth: string = '80%'; // Default popup width
+  popupHeight: string = '80%'; // Default popup height
 
-  constructor(private router: Router, private apiservice: ApiCallService, private http: HttpClient) { }
+  constructor(private fb: FormBuilder,private router: Router, private apiservice: ApiCallService, private http: HttpClient) { this.forgotPasswordForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]]
+  });}
   isLoading: boolean = false;
   ngOnInit(): void {
   }
@@ -67,5 +74,50 @@ export class LoginAdminComponent {
 isLoggedIn():any{
   return this.isLoggedIn;
 }
+get email() {
+  return this.forgotPasswordForm.get('email');
+}
 
+onSubmit() {
+  console.log('Email',this.forgotPasswordForm.value.email);
+  this.router.navigate(['/login']);
+  
+  if(this.forgotPasswordForm.valid){
+    this.apiservice.SendRestPasswordLink(this.forgotPasswordForm.value.email).subscribe(
+      response=>{
+        console.log('Rest Password Link Send Successfully');
+      },
+      error =>{
+        console.log('Error sending reset link', error);
+      }
+    )
+  }
+  this.popupVisible = false;
+}
+forgotPassword(){
+  this.popupVisible = true;
+}
+@HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.adjustLayout();
+  }
+
+  adjustLayout() {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // Adjust grid height based on window height
+
+    // Adjust popup size dynamically
+    if (windowWidth < 768) {
+      this.popupWidth = '90%';
+      this.popupHeight = '80%';
+    } else if (windowWidth < 1024) {
+      this.popupWidth = '80%';
+      this.popupHeight = '80%';
+    } else {
+      this.popupWidth = '60%';
+      this.popupHeight = '70%';
+    }
+  }
 }

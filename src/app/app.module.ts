@@ -78,6 +78,7 @@ import { OrderStatusComponent } from './Pages/user/order-status/order-status.com
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BodyComponent } from './Pages/body/body.component';
 import { authGuard } from 'src/auth/auth.guard';
+import { ResetComponent } from './Pages/reset/reset.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ import { authGuard } from 'src/auth/auth.guard';
     SpecialfoodlistComponent,
     OrderStatusComponent,
     BodyComponent,
+    ResetComponent,
     
   ],
   imports: [

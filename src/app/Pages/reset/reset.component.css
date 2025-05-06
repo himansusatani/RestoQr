@@ -1,0 +1,147 @@
+/* Global reset and body styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the body takes full viewport height */
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Form container */
+  .reset-password-container {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    margin: 1rem auto; /* Centers horizontally with auto margins */
+    display: block; /* Ensures the container respects margin auto */
+  }
+  
+  /* Form title */
+  .reset-password-form h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Form fields */
+  .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  }
+  
+  /* Labels */
+  .form-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  /* Submit button */
+  .btn-primary {
+    background-color: #e0e7ff; /* Light purple from your image */
+    border: none;
+    padding: 0.85rem;
+    border-radius: 6px;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+  }
+  
+  .btn-primary:hover {
+    background-color: #c7d2fe;
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary:disabled {
+    background-color: #e0e7ff;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+  }
+  
+  /* Error messages (if applicable) */
+  .text-danger {
+    font-size: 0.85rem;
+    color: #dc3545;
+    text-align: left;
+    margin-top: 0.25rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .reset-password-container {
+      max-width: 90%;
+      padding: 1.5rem;
+    }
+  
+    .reset-password-form h2 {
+      font-size: 1.5rem;
+    }
+  
+    .form-control {
+      font-size: 0.95rem;
+      padding: 0.65rem;
+    }
+  
+    .btn-primary {
+      font-size: 0.95rem;
+      padding: 0.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .reset-password-container {
+      max-width: 100%;
+      margin: 0.5rem;
+      padding: 1.25rem;
+    }
+  
+    .reset-password-form h2 {
+      font-size: 1.35rem;
+    }
+  
+    .form-control {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+    }
+  
+    .btn-primary {
+      font-size: 0.9rem;
+      padding: 0.7rem;
+    }
+  
+    .form-label {
+      font-size: 0.9rem;
+    }
+  
+    .text-danger {
+      font-size: 0.8rem;
+    }
+  }
