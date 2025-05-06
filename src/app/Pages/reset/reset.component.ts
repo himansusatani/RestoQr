@@ -58,7 +58,7 @@ export class ResetComponent {
         },
           'success',
           2000);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/admin/login']);
         },
         error:(err)=>{
           const message = "Something Went Wrong";

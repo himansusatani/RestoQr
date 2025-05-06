@@ -52,58 +52,21 @@ import {
   DxAccordionModule
 } from "devextreme-angular";
 import { ApiCallService } from './Services/api-call.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { NgxPrintModule } from 'ngx-print';
-import { SidenavComponent } from './Pages/admin/sidenav/sidenav.component';
 import { HeaderComponent } from './Pages/admin/header/header.component';
-import { ShowOderComponent } from './Pages/admin/show-oder/show-oder.component';
-import { LoginAdminComponent } from './Pages/admin/login-admin/login-admin.component';
-import { UserFoodSelectionComponent } from './Pages/user/user-food-selection/user-food-selection.component';
-import { UserNavComponent } from './Pages/user/user-nav/user-nav.component';
-import { ForgotPasswordComponent } from './Pages/admin/forgot-password/forgot-password.component';
-import { UsercartComponent } from './Pages/user/usercart/usercart.component';
-import { UserDetailsComponent } from './Pages/user/user-details/user-details.component';
-import { OrderDetailsComponent } from './Pages/admin/order-details/order-details.component';
-import { DashboardComponent } from './Pages/admin/dashboard/dashboard.component';
-import { AllOrderComponent } from './Pages/admin/all-order/all-order.component';
-import { SpecialFoodMenuComponent } from './Pages/user/special-food-menu/special-food-menu.component';
-import { SettingComponent } from './Pages/admin/setting/setting.component';
-import { DetailsComponent } from './Pages/admin/AddFoodMenu/details/details.component';
-import { ListComponent } from './Pages/admin/AddFoodMenu/list/list.component';
-import { SpecialFoodDetailsComponent } from './Pages/admin/AddSpecialFoodMenu/special-food-details/special-food-details.component';
-import { SpecialfoodlistComponent } from './Pages/admin/AddSpecialFoodMenu/specialfoodlist/specialfoodlist.component';
-import { OrderStatusComponent } from './Pages/user/order-status/order-status.component';
+
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BodyComponent } from './Pages/body/body.component';
 import { authGuard } from 'src/auth/auth.guard';
-import { ResetComponent } from './Pages/reset/reset.component';
+import { JwtInterceptorService } from '../app/Services/jwt-interceptor.service'; // <-- Import your interceptor
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
-    HeaderComponent,
-    ShowOderComponent,
-    LoginAdminComponent,
-    UserFoodSelectionComponent,
-    UserNavComponent,
-    ForgotPasswordComponent,
-    UsercartComponent,
-    UserDetailsComponent,
-    OrderDetailsComponent,
-    DashboardComponent,
-    AllOrderComponent,
-    SpecialFoodMenuComponent,
-    SettingComponent,
-    DetailsComponent,
-    ListComponent,
-    SpecialFoodDetailsComponent,
-    SpecialfoodlistComponent,
-    OrderStatusComponent,
     BodyComponent,
-    ResetComponent,
-    
+    HeaderComponent
   ],
   imports: [
     FormsModule,
@@ -158,7 +121,7 @@ import { ResetComponent } from './Pages/reset/reset.component';
     }),
     
   ],
-  providers: [ApiCallService],
+  providers: [ApiCallService,  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })

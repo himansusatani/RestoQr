@@ -16,7 +16,7 @@ export class UserFoodSelectionComponent {
     this.GetAllFoodMenu();
   }
   
-  customizeCell(e: any) {
+  onCustomizeCell(e: any) {
     console.log("eee",e);
     // Customize the appearance of the cell based on a condition
     if (e.column.dataField === 'foodId') {
@@ -43,6 +43,6 @@ export class UserFoodSelectionComponent {
   }
   OpenSpecialItem()
   {
-    this.router.navigate(['/userheader/specialFood']);
+    this.router.navigate(['/user/userheader/specialFood']);
   }
 }

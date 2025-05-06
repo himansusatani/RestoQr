@@ -4,6 +4,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ApiCallService } from 'src/app/Services/api-call.service';
 import notify from 'devextreme/ui/notify';
+import { Token } from '@angular/compiler';
+import { AuthService } from 'src/auth/auth.service';
 
 @Component({
   selector: 'app-login-admin',
@@ -17,7 +19,8 @@ export class LoginAdminComponent {
   popupWidth: string = '80%'; // Default popup width
   popupHeight: string = '80%'; // Default popup height
 
-  constructor(private fb: FormBuilder,private router: Router, private apiservice: ApiCallService, private http: HttpClient) { this.forgotPasswordForm = this.fb.group({
+  constructor(private fb: FormBuilder,private router: Router, private apiservice: ApiCallService, private http: HttpClient,  private authService: AuthService,
+  ) { this.forgotPasswordForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]]
   });}
   isLoading: boolean = false;
@@ -29,40 +32,56 @@ export class LoginAdminComponent {
   })
 
   submit() {
-    let obj = this.loginform.getRawValue();
+    let  obj = this.loginform.getRawValue();
     this.isLoading = true;
+    
     this.apiservice.loginadmin(obj).subscribe(data => {
-      if (data.isLoggedIn == true) {
-        const localdata = {
-          userid:data.userid, 
-          email: data.emailId,
-          password:data.password,
-          isLoggedIn:true
-          }
-          localStorage.setItem('data',JSON.stringify(localdata));
+      if (data.token) {
+        const token = data.token;
+        
+        // Decode the JWT token to extract the expiration time
+        const decodedToken = this.decodeJwt(token);
+        const expirationTime = decodedToken.exp * 1000; // Convert exp (seconds) to milliseconds
+  
+        // Store token and expiration time in localStorage
+        localStorage.setItem('Token', token);
+        localStorage.setItem('TokenExpiration', expirationTime.toString());
+        
+        // Check if token has expired
+        if (Date.now() >= expirationTime) {
+          this.authService.logout();
+          const errorMsg = "Token has expired. Please log in again.";
+          notify({
+            message: errorMsg,
+            width: 450,})
+        } else {
+          localStorage.setItem('isLoggedIn', 'true');
+          this.router.navigate(['/admin/sidenav/showorder']);
+          const message = "Login Successfully...!!!";
+          notify({
+            message,
+            width: 450,
+          }, 'success', 2000);
+        }
+        
         this.isLoading = false;
-        this.router.navigate(['/sidenav/showorder']);
-        const message = "Login Successfully...!!!";
+      } else {
+        this.isLoading = false;
+        const errorMsg = "Login Failed...!!!";
         notify({
-          message,
+          message: errorMsg,
           width: 450,
-        },
-          'success',
-          2000);
+        }, 'error', 2000);
       }
-      else {
-        this.isLoading = false;
-        const errorMsg="Login Failed...!!!";
-        notify({
-          errorMsg,
-          width:450,
-        },
-        'error',
-        2000
-        );
-      }
-    })
-}
+    });
+  }
+  
+  // Decode JWT token function
+  decodeJwt(token: string) {
+    const parts = token.split('.');
+    const decoded = atob(parts[1]);  // Base64 decode the payload
+    return JSON.parse(decoded);
+  }
 
   get username(){
   return this.loginform.get('username')
@@ -80,7 +99,7 @@ get email() {
 
 onSubmit() {
   console.log('Email',this.forgotPasswordForm.value.email);
-  this.router.navigate(['/login']);
+  this.router.navigate(['/admin/login']);
   
   if(this.forgotPasswordForm.valid){
     this.apiservice.SendRestPasswordLink(this.forgotPasswordForm.value.email).subscribe(

@@ -9,8 +9,8 @@
             [remoteOperations]="false" [allowColumnReordering]="true"
             [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'" [dataSource]="data"
             keyExpr="foodId"
-            [allowColumnResizing]="true"
-            [customizeCell]="customizeCell">
+            [allowColumnResizing]="true">
+            <dxo-export [enabled]="true" [customizeCell]="onCustomizeCell"></dxo-export>
             <!-- style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" -->
             <!-- <dxo-search-panel style="border: 5px solid orange;" [width]="300" [visible]="true" placeholder="Search Your Favourite Food...."></dxo-search-panel> -->
             <dxo-load-panel [enabled]="true"></dxo-load-panel>

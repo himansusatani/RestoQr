@@ -1,66 +1,66 @@
-<mat-toolbar  class="" style="background-color: #E0E0E0;">
+<mat-toolbar class="" style="background-color: #E0E0E0;">
     <button class="btn" (click)="drawer.toggle()" mat-icon-button>
-        <mat-icon>menu</mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
     <span>RestoQr</span>
     <span class="example-spacer"></span>
     <button class="btn" (click)="badgevisibility()" mat-icon-button>
-        <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible"
-            matBadgeSize="small">notifications</mat-icon>
+      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">
+        notifications
+      </mat-icon>
     </button>
     <button class="btn" (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon>
+      <mat-icon>exit_to_app</mat-icon>
     </button>
-</mat-toolbar>
-<mat-drawer-container autosize>
+  </mat-toolbar>
+  
+  <mat-drawer-container autosize>
     <mat-drawer #drawer opened="true" mode="side" position="start">
-        <mat-nav-list>
-
-            <img src="../../../assets/Images/logo.png" alt="">
-
-            <mat-list-item routerLink="dashboard">
-                <a class="link"  routerLink="dashboard"><mat-icon >dashboard</mat-icon> Dashboard</a>
-            </mat-list-item>
-            <mat-list-item routerLink="showorder">
-                <a class="link" routerLink="showorder"><mat-icon>home</mat-icon> ShowOrder</a>
-            </mat-list-item>
-            <mat-list-item routerLink="allorder">
-                <a class="link" routerLink="allorder" ><mat-icon>table</mat-icon> AllOrder</a>
-            </mat-list-item>
-            <mat-list-item routerLink="setting">
-                <a class="link" routerLink="setting" ><mat-icon>settings</mat-icon> Settings</a>
-            </mat-list-item>
-            <mat-list-item>
-                <a><mat-icon>help</mat-icon> Help</a>
-            </mat-list-item>
-            <mat-list-item>
-                <a><mat-icon>analytics</mat-icon> analytics</a>
-            </mat-list-item>
-        </mat-nav-list>
+      <mat-nav-list>
+        <img src="../../../assets/Images/logo.png" alt="">
+  
+        <mat-list-item routerLink="dashboard">
+          <a class="link" routerLink="dashboard">
+            <mat-icon>dashboard</mat-icon> Dashboard
+          </a>
+        </mat-list-item>
+  
+        <mat-list-item routerLink="showorder">
+          <a class="link" routerLink="showorder">
+            <mat-icon>home</mat-icon> ShowOrder
+          </a>
+        </mat-list-item>
+  
+        <mat-list-item routerLink="allorder">
+          <a class="link" routerLink="allorder">
+            <mat-icon>table</mat-icon> AllOrder
+          </a>
+        </mat-list-item>
+  
+        <mat-list-item routerLink="setting">
+          <a class="link" routerLink="setting">
+            <mat-icon>settings</mat-icon> Settings
+          </a>
+        </mat-list-item>
+  
+        <mat-list-item>
+          <a>
+            <mat-icon>help</mat-icon> Help
+          </a>
+        </mat-list-item>
+  
+        <mat-list-item>
+          <a>
+            <mat-icon>analytics</mat-icon> analytics
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
     </mat-drawer>
+  
     <mat-drawer-content>
-        <div style="text-align: center;min-height: 600px;">
-            <router-outlet></router-outlet>
-        </div>
+      <div style="text-align: center; min-height: 600px;">
+        <router-outlet></router-outlet>
+      </div>
     </mat-drawer-content>
-</mat-drawer-container>
-<!-- 
-<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed' : '' ">
-    <div class="logo-container">
-        <button class="logo" (click)="toggleCollapse()">A</button>
-        <div class="logo-text"   *ngIf="collapsed">Angular</div>
-        <button class="btn-close"  *ngIf="collapsed" (click)="closeSidenav()">
-            <i class="fal fa-times colse-icon"></i>
-        </button>
-    </div>
-    <ul class="sidenav-nav">
-        <li class="sidenav-nav-item" *ngFor="let data of navData">
-            <a class="sidenav-nav-link" [routerLink]="data.routerLink" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact:true}">
-                <i class="sidenav-link-icon" [class]="data.icon">
-                    <span class="sidenav-link-text"   *ngIf="collapsed">{{data.lable}}</span>
-                </i>
-            </a>
-        </li>
-    </ul>
-</div> -->
+  </mat-drawer-container>
+  
