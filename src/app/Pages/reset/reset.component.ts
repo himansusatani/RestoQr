@@ -14,6 +14,7 @@ export class ResetComponent {
   resetPasswordForm: FormGroup;
   emailToReset!: string;
   emailToken!: string;
+  expirationTime!: Date;
   resetPasswordObj = new ResetPassword()
   constructor(private fb: FormBuilder,private activatedRoute: ActivatedRoute, private apiService : ApiCallService,private router :Router) {
     this.resetPasswordForm = this.fb.group({
@@ -23,14 +24,23 @@ export class ResetComponent {
   }
 
   ngOnInit():void{
-    this.activatedRoute.queryParams.subscribe(val =>{
+    this.activatedRoute.queryParams.subscribe(val => {
       this.emailToReset = val['email'];
-      let uriToken =  val['code'];
-      console.log(val['code'],'val');
-      
-      this.emailToken = uriToken.replace(/ /g, '+');
-      console.log(this.emailToken,'token');
-    })
+      let uriToken = val['code'];
+      this.emailToken = uriToken.replace(/ /g, '+'); // Fix potential issues with URL encoding
+
+      if (val['expirationTime']) {
+        this.expirationTime = new Date(val['expirationTime']);
+        const now = new Date();
+        if (now > this.expirationTime) {
+          notify({ message: 'This password reset link has expired.', width: 450 }, 'error', 3000);
+          this.router.navigate(['/admin/login']);
+        }
+      } else {
+        notify({ message: 'Invalid reset link.', width: 450 }, 'error', 3000);
+        this.router.navigate(['/admin/login']);
+      }
+    });
   }
 
   passwordMatchValidator(form: FormGroup) {
