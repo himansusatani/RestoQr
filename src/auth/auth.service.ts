@@ -11,12 +11,16 @@ export class AuthService {
     return !! localStorage.getItem('isLoggedIn');
   }
   logout(){
-    localStorage.removeItem('token')
-    localStorage.removeItem('isLoggedIn')
-    localStorage.removeItem('TokenExpiration');
+    //localStorage.removeItem('token')
+    //localStorage.removeItem('TokenExpiration');
+    sessionStorage.removeItem('Token');
+    sessionStorage.removeItem('TokenExpiration');
+    localStorage.removeItem('isLoggedIn');
   }
 
   getToken(){
-    return localStorage.getItem('token')
+    //return localStorage.getItem('token')
+    return sessionStorage.getItem('Token');
+
   }
 }

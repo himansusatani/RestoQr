@@ -2,7 +2,8 @@
     <div class="d-con-no-filter-grid-flex-row">
         <h1 style="color: rgb(57, 54, 54); font-weight: bold;">Show Order & Manage</h1>
         <dx-data-grid class="d-grid-no-batch-actions-filter" [remoteOperations]="false" [allowColumnReordering]="true"
-            [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'" [height]="gridHeight" [dataSource]="data" keyExpr="userid">
+            [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'" [height]="gridHeight"
+            [dataSource]="data" keyExpr="orderId">
             <dxo-search-panel [visible]="true"></dxo-search-panel>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
@@ -19,7 +20,8 @@
             <div *dxTemplate="let data of 'cellTemplate'">
                 <dx-button stylingMode="contained" text="Manage" style="background-color: black; color: whitesmoke"
                     (onClick)="manage(data.data.orderId)" [width]="100"></dx-button>
-                <dx-button stylingMode="contained" text="Print" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0)"
+                <dx-button stylingMode="contained" text="Print"
+                    style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0)"
                     (onClick)="pdfGenerate(data.data.orderId)" [width]="100"></dx-button>
             </div>
             <dxo-summary>
@@ -29,42 +31,44 @@
     </div>
 </div>
 
-<ngx-extended-pdf-viewer [src]="pdfurl"></ngx-extended-pdf-viewer>
+
+  <!-- Use full height inside popup -->
+  <div style="height: 100%;">
+    <ngx-extended-pdf-viewer
+      [src]="pdfurl"
+      height="100%"
+      [showSidebarButton]="false"
+      backgroundColor="#fff"
+    ></ngx-extended-pdf-viewer>
+  </div>
 
 <dx-popup [width]="popupWidth" [height]="popupHeight" [hideOnOutsideClick]="true" [showCloseButton]="true"
     [(visible)]="popupVisible" title="Manage Order">
     <div class="table-wrapper">
-        <dx-data-grid class="d-grid-no-batch-actions-filter"
-            [remoteOperations]="false"
-            [allowColumnReordering]="true"
-            [rowAlternationEnabled]="true"
-            [showBorders]="true"
-            [columnAutoWidth]="true"
-            [columnHidingEnabled]="true"
-            [height]="'auto'"
-            [width]="'1200px'"  
-            [dataSource]="orderData"
-            keyExpr="orderId">
-    
+        <dx-data-grid class="d-grid-no-batch-actions-filter" [remoteOperations]="false" [allowColumnReordering]="true"
+            [rowAlternationEnabled]="true" [showBorders]="true" [columnAutoWidth]="true" [columnHidingEnabled]="true"
+            [height]="'auto'" [width]="'1200px'" [dataSource]="orderData" keyExpr="orderId">
+
             <dxo-search-panel [visible]="true"></dxo-search-panel>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-header-filter [visible]="true"></dxo-header-filter>
             <dxo-group-panel [visible]="true"></dxo-group-panel>
-            <dxo-scrolling mode="standard" showScrollbar="always"></dxo-scrolling>  <!-- Ensures scrollbar is visible -->
-    
+            <dxo-scrolling mode="standard" showScrollbar="always"></dxo-scrolling> <!-- Ensures scrollbar is visible -->
+
             <dxi-column dataField="tableno" caption="Table No" [minWidth]="100" width="auto"></dxi-column>
             <dxi-column dataField="orderId" caption="Order Id." [minWidth]="100" width="auto"></dxi-column>
             <dxi-column dataField="userId" caption="User Id" [minWidth]="100" width="auto"></dxi-column>
             <dxi-column dataField="username" caption="UserName" [minWidth]="120" width="auto"></dxi-column>
             <dxi-column dataField="foodId" caption="Food Id" [minWidth]="100" width="auto"></dxi-column>
             <dxi-column dataField="foodname" caption="Food Name" [minWidth]="150" width="auto"></dxi-column>
-            <dxi-column dataField="fooddescription" caption="Food Description" [minWidth]="200" width="auto"></dxi-column>
+            <dxi-column dataField="fooddescription" caption="Food Description" [minWidth]="200"
+                width="auto"></dxi-column>
             <dxi-column dataField="foodprice" caption="Food Price" [minWidth]="100" width="auto"></dxi-column>
-    
+
         </dx-data-grid>
     </div>
-    
-    
+
+
 
     <div class="popup-actions">
         <strong>Grand Total: {{ grandTotal }}</strong>

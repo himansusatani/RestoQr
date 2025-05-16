@@ -16,8 +16,9 @@ export class LoginAdminComponent {
 
   forgotPasswordForm: FormGroup;
   popupVisible: boolean = false; // Flag for popup visibility
-  popupWidth: string = '80%'; // Default popup width
-  popupHeight: string = '80%'; // Default popup height
+  popupWidth: string = '60%'; // Adjusted smaller width
+  popupHeight: string = 'auto'; // Height based on content
+
 
   constructor(private fb: FormBuilder, private router: Router, private apiservice: ApiCallService, private http: HttpClient, private authService: AuthService,
   ) {
@@ -37,46 +38,6 @@ export class LoginAdminComponent {
     let obj = this.loginform.getRawValue();
     this.isLoading = true;
 
-    // this.apiservice.loginadmin(obj).subscribe(data => {
-    //    if (data.token) {
-    //     const token = data.token;
-
-    //     // Decode the JWT token to extract the expiration time
-    //     const decodedToken = this.decodeJwt(token);
-    //     const expirationTime = decodedToken.exp * 1000; // Convert exp (seconds) to milliseconds
-
-    //     // Store token and expiration time in localStorage
-    //     localStorage.setItem('Token', token);
-    //     localStorage.setItem('TokenExpiration', expirationTime.toString());
-
-    //     // Check if token has expired
-    //     if (Date.now() >= expirationTime) {
-    //       const errorMsg = "Token has expired. Please log in again.";
-    //       notify({
-    //         message: errorMsg,
-    //         width: 450,})
-    //         this.authService.logout();
-    //     } else {
-    //       localStorage.setItem('isLoggedIn', 'true');
-    //       this.router.navigate(['/admin/sidenav/showorder']);
-    //       const message = "Login Successfully...!!!";
-    //       notify({
-    //         message,
-    //         width: 450,
-    //       }, 'success', 2000);
-    //     }
-
-    //     this.isLoading = false;
-    //   } else {
-    //     this.isLoading = false;
-    //     const errorMsg = "Login Failed...!!!";
-    //     notify({
-    //       message: errorMsg,
-    //       width: 450,
-    //     }, 'error', 2000);
-    //   }
-    // });
-
     this.apiservice.loginadmin(obj).subscribe({
       next: data => {
         if (data.token) {
@@ -87,9 +48,10 @@ export class LoginAdminComponent {
           const expirationTime = decodedToken.exp * 1000; // Convert exp (seconds) to milliseconds
 
           // Store token and expiration time in localStorage
-          localStorage.setItem('Token', token);
-          localStorage.setItem('TokenExpiration', expirationTime.toString());
-
+          //localStorage.setItem('Token', token);
+          //localStorage.setItem('TokenExpiration', expirationTime.toString());
+          sessionStorage.setItem('Token', token);
+          sessionStorage.setItem('TokenExpiration', expirationTime.toString());
           // Check if token has expired
           if (Date.now() >= expirationTime) {
             const errorMsg = "Token has expired. Please log in again.";
@@ -188,20 +150,20 @@ export class LoginAdminComponent {
 
   adjustLayout() {
     const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-
-    // Adjust grid height based on window height
-
-    // Adjust popup size dynamically
-    if (windowWidth < 768) {
-      this.popupWidth = '90%';
-      this.popupHeight = '80%';
-    } else if (windowWidth < 1024) {
-      this.popupWidth = '80%';
-      this.popupHeight = '80%';
+  
+    if (windowWidth < 576) { // Extra small devices
+      this.popupWidth = '95%';
+    } else if (windowWidth < 768) {
+      this.popupWidth = '85%';
+    } else if (windowWidth < 992) {
+      this.popupWidth = '70%';
     } else {
-      this.popupWidth = '60%';
-      this.popupHeight = '70%';
+      this.popupWidth = '50%';
     }
+  
+    this.popupHeight = 'auto';
   }
+  closePopup() {
+    this.popupVisible = false;
+  }                                     
 }

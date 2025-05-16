@@ -31,6 +31,6 @@ constructor(private router:Router){}
         },
           'success',
           2000);
-    this.router.navigate(['/user/userheader/specialFood']);
+    this.router.navigate(['/user/userNav/specialFood']);
   }
 }

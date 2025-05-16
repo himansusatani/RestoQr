@@ -233,3 +233,12 @@
     background-color: #008080;
     color:#fff;
   }
+  .text-btn{
+    all: unset;
+    cursor: pointer;
+    color: #008080;
+  }
+  .text-btn:hover{
+    text-decoration: underline;
+    transform: scale(1.1);
+  }

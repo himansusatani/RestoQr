@@ -8,9 +8,10 @@ export class JwtInterceptorService implements HttpInterceptor {
   constructor(private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('Token');
-    const tokenExpiration = localStorage.getItem('TokenExpiration');
-
+    //const token = localStorage.getItem('Token');
+    //const tokenExpiration = localStorage.getItem('TokenExpiration');
+    const token = sessionStorage.getItem('Token');
+    const tokenExpiration = sessionStorage.getItem('TokenExpiration');
     if (token && tokenExpiration) {
       const expirationTime = parseInt(tokenExpiration, 10);
       

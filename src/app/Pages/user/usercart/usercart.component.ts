@@ -56,20 +56,31 @@ export class UsercartComponent {
   mobileNo:any;
   Checkout()
   {
-     this.apiservice.CheckOutFood(this.userName,this.tableNo,this.mobileNo,this.products).subscribe(res => {
+     this.apiservice.CheckOutFood(this.userName,this.tableNo,this.mobileNo,this.products).subscribe(
+      (res) => {
        this.orderData = res ;
        const message = "Order Placed";
+       this.emptycart();
         notify({
           message,
           width: 450,
         },
           'success',
           2000);
-     })
+      },
+      (error) => {
+        const message = "Order Not Placed";
+        notify({
+          message,
+          width: 450,
+        },
+          'error',
+          2000);
+      })
    }
 
-   submit()
+   shopNow()
    {
-    this.router.navigate(['/user/userheader/foodSelection']);
+    this.router.navigate(['/user/userNav/foodSelection']);
    }
 }

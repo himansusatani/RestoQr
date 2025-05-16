@@ -10,8 +10,15 @@ import { OrderStatusComponent } from '../order-status/order-status.component';
 
 const routes: Routes = [
   {
-    path: '', component: UserNavComponent, children: [
-      { path: '', pathMatch: 'full', redirectTo: 'userdetail' },
+    path: '',
+    redirectTo: 'userNav/userdetail',
+    pathMatch: 'full'
+  },
+  {
+    path: 'userNav',
+    component: UserNavComponent,
+    children: [
+      { path: '', redirectTo: 'userdetail', pathMatch: 'full' },
       { path: 'userdetail', component: UserDetailsComponent },
       { path: 'specialFood', component: SpecialFoodMenuComponent },
       { path: 'foodSelection', component: UserFoodSelectionComponent },
@@ -20,6 +27,7 @@ const routes: Routes = [
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

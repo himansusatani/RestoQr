@@ -33,6 +33,6 @@ export class SpecialFoodMenuComponent {
 
   BackToMenu()
   {
-    this.router.navigate(['/user/userheader/foodSelection']);
+    this.router.navigate(['/user/userNav/foodSelection']);
   }
 }
