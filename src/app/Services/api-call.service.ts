@@ -58,7 +58,7 @@ export class ApiCallService {
   GetAllOrderWithStatus()
 
   {
-    return this.http.get<any>(this.baseurl+'ShowOrder/GetAllOrderWithStauts');
+    return this.http.get<any>(this.baseurl+'ShowOrder/GetAllOrderWithStatus');
   }
   //User Api
   GetAllFoodSelection()

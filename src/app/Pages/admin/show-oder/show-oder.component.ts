@@ -50,11 +50,13 @@ export class ShowOderComponent implements OnInit, OnDestroy {
     //   this.cdr.detectChanges();
     // });
     this.signalRSubscription = this.orderSignalrService.orderReceived$.subscribe((newOrders) => {
-      console.log('Received orders:', newOrders); // Add log to see what you're receiving
+      const message = "New Order Received!!";
+      notify({ message, width: 450 }, 'success', 2000);
       if (newOrders && newOrders.length > 0) {
         this.data = newOrders;  // Update your local data
       } else {
-        console.log('No orders received');
+        const message = "No Orders Received!!";
+        notify({ message, width: 450 }, 'error', 2000);
       }
     });
     this.orderSignalrService.orderReceived$.subscribe((newOrders) => {
@@ -106,11 +108,12 @@ export class ShowOderComponent implements OnInit, OnDestroy {
 
   CancleOrder(deleteOrderData: any) {
     console.log(deleteOrderData);
-    const idArray: number[] = [];
+    //const idArray: number[] = [];
     const status = "Rejected";
     for (const data of deleteOrderData) {
-      idArray.push(data.orderId)
-      this.apiservice.DeleteOrderByOrderId(idArray, this.orderData, status).subscribe(res => {
+      //idArray.push(data.orderId)
+      const orderId = data.orderId;
+      this.apiservice.DeleteOrderByOrderId(orderId, this.orderData, status).subscribe(res => {
         this.data = res;
         const message = "Order Canceled!!";
         notify({
@@ -163,7 +166,7 @@ export class ShowOderComponent implements OnInit, OnDestroy {
 
     if (windowWidth < 768) {
       this.columnWidths = {
-        userid: 70,
+        userId: 70,
         orderId: 70,
         username: 70,
         mobileno: 60,
@@ -171,7 +174,7 @@ export class ShowOderComponent implements OnInit, OnDestroy {
       };
     } else if (windowWidth < 1024) {
       this.columnWidths = {
-        userid: 90,
+        userId: 90,
         orderId: 80,
         username: 90,
         mobileno: 90,
@@ -179,7 +182,7 @@ export class ShowOderComponent implements OnInit, OnDestroy {
       };
     } else {
       this.columnWidths = {
-        userid: 90,
+        userId: 90,
         orderId: 80,
         username: 90,
         mobileno: 90,

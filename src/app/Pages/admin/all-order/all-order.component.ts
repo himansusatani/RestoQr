@@ -22,9 +22,13 @@ ngOnInit(): void {
 data: any[] = [];
   GetData()
   {
-    this.apiservice.GetAllOrderWithStatus().subscribe(res => {
+    this.apiservice.GetAllOrderWithStatus().subscribe(
+    (res) => {
       this.data = res;
-    })
+    },
+    (err) => {
+      console.log(err);
+    }); 
   }
 
   // Listen to window resize events to adjust the grid and column widths
