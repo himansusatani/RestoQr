@@ -1,5 +1,41 @@
-<dx-popup [width]="'80%'" [height]="'80%'" [(visible)]="popupVisible"
-    title="Add Food Menu">
+<dx-popup [width]="'80%'" [height]="'80%'" [(visible)]="popupVisible" title="Add Food Menu" [showCloseButton]="true"
+    [showTitle]="true" (onHiding)="onPopupHidden()">
 
-    <dx-button stylingMode="contained" text="Cancle" style="background-color:#bb2124; color:whitesmoke"(onClick)="Closebtn()" [width]="100"></dx-button>
+    <div class="d-con-form">
+        <form [formGroup]="rForm">
+            <dx-form [formData]="rForm" [colCount]="1">
+                <dxi-item itemType="group" [colCount]="2">
+                    <dxi-item>
+                        <label for="foodName">Food Name</label>
+                        <dx-text-box formControlName="foodName"></dx-text-box>
+                    </dxi-item>
+                    <dxi-item>
+                        <label for="foodPrice">Food Price</label>
+                        <dx-text-box formControlName="foodPrice"></dx-text-box>
+                    </dxi-item>
+                    <dxi-item>
+                        <label for="foodCategory">Food Category</label>
+                        <dx-select-box formControlName="foodCategory" [items]="categories" displayExpr="name"
+                            valueExpr="id"></dx-select-box>
+                    </dxi-item>
+                    <dxi-item>
+                        <label for="foodType">Food Type</label>
+                        <dx-select-box formControlName="foodType" [items]="types" displayExpr="name"
+                            valueExpr="id"></dx-select-box>
+                    </dxi-item>
+                    <dxi-item>
+                        <label for="foodDescription">Food Description</label>
+                        <dx-text-area formControlName="foodDescription"></dx-text-area>
+                    </dxi-item>
+                </dxi-item>
+            </dx-form>
+        </form>
+        <div class="form-footer mt-3">
+            <dx-button text="Submit" type="success" stylingMode="contained" (onClick)="addeditButton()">
+            </dx-button>
+        </div>
+
+    </div>
+
+
 </dx-popup>

@@ -12,6 +12,7 @@ import { DetailsComponent } from '../AddFoodMenu/details/details.component';
 import { ListComponent } from '../AddFoodMenu/list/list.component';
 import { SpecialFoodDetailsComponent } from '../AddSpecialFoodMenu/special-food-details/special-food-details.component';
 import { SpecialfoodlistComponent } from '../AddSpecialFoodMenu/specialfoodlist/specialfoodlist.component';
+import { TodoListComponent } from '../todo-list/todo-list.component';
 
 
 
@@ -26,10 +27,12 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'allorder', component: AllOrderComponent },
       { path: 'setting', component: SettingComponent },
+      { path: 'edit/:id', component: DetailsComponent },
       { path: 'addFoodMenu', component: DetailsComponent },
       { path: 'listFoodMenu', component: ListComponent },
       { path: 'addSpecialFood', component: SpecialFoodDetailsComponent },
       { path: 'listSpecialFood', component: SpecialfoodlistComponent },
+      {path:'todoList',component:TodoListComponent},
     ]
   }
 ];

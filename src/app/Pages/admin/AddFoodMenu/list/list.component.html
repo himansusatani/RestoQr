@@ -1,1 +1,33 @@
-<p>list works!</p>
+<dx-popup [width]="'80%'" [height]="'80%'" [(visible)]="popupVisible"
+    title="Food Menu" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [showCloseButton]="true" [showTitle]="true" (onHiding)="onPopupHidden()">
+
+    <dx-data-grid [dataSource]="data" class="d-grid-no-batch-actions-filter" [remoteOperations]="false" 
+            [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true" 
+            [width]="'100%'" [height]="gridHeight"> 
+
+            <dxo-search-panel [visible]="true"></dxo-search-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+        <dxi-column dataField="foodId" caption="Food Id" alignment="left"></dxi-column>
+        <dxi-column dataField="foodName" caption="Food Name" alignment="left"></dxi-column>
+        <dxi-column dataField="foodPrice" caption="Price" alignment="left"></dxi-column>
+        <dxi-column dataField="foodCategory" caption="Category" alignment="left"></dxi-column>
+        <dxi-column dataField="foodType" caption="Type" alignment="left"></dxi-column>
+        <dxi-column dataField="foodDescription" caption="Description" alignment="left"></dxi-column>
+        <dxi-column cellTemplate="cellTemplate"caption="Action" alignment="left"></dxi-column>
+
+        <div *dxTemplate="let data of 'cellTemplate'">
+                <dx-button stylingMode="contained" text="Edit" style="background-color: black; color: whitesmoke"
+                    (onClick)="editMenu(data.data.foodId)" [width]="100">
+                </dx-button>
+                <dx-button stylingMode="contained" text="Delete" style="background-color: red; color: whitesmoke"
+                    (onClick)="deleteMenu(data.data.foodId)" [width]="100">
+                </dx-button>
+        </div>
+    </dx-data-grid>
+
+</dx-popup>

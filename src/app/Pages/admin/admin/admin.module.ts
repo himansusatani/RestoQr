@@ -68,6 +68,7 @@ import { LoginAdminComponent } from '../login-admin/login-admin.component';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { ResetComponent } from '../../reset/reset.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoListComponent } from '../todo-list/todo-list.component';
 
 
 // Add any needed shared modules here (Material, DevExtreme, etc.)
@@ -85,7 +86,8 @@ import { HttpClientModule } from '@angular/common/http';
     SpecialfoodlistComponent,
     LoginAdminComponent,
     ForgotPasswordComponent,
-    ResetComponent
+    ResetComponent,
+    TodoListComponent
   ],
   imports: [
     FormsModule,

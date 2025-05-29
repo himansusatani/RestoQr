@@ -26,7 +26,7 @@ export class UserFoodSelectionComponent {
 
   GetAllFoodMenu()
   {
-    this.apiservice.GetAllFoodSelection().subscribe(res => {
+    this.apiservice.GetSimpleFoodDetails().subscribe(res => {
       this.data = res;
       this.data.forEach((a:any)=>{
         Object.assign(a,{total:a.foodPrice});

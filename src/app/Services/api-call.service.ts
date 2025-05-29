@@ -55,15 +55,30 @@ export class ApiCallService {
     return this.http.post<any>(this.baseurl+'ShowOrder/AcceptOrder?status='+status,obj);
   }
 
-  GetAllOrderWithStatus()
-
-  {
+  GetAllOrderWithStatus(){
     return this.http.get<any>(this.baseurl+'ShowOrder/GetAllOrderWithStatus');
   }
+
+  InsertUpdateFoodMenu(obj:any, id:any){
+    return this.http.post<any>(this.baseurl+'FoodMenu/InsertUpdateFoodMenu?id='+id,obj);
+  }
+
+  DeleteFoodMenu(id:any){
+    return this.http.delete<any>(this.baseurl+'FoodMenu/DeleteFoodMenu?id='+id);
+  }
+
   //User Api
-  GetAllFoodSelection()
-  {
+
+  GetAllFoodDetails(){
     return this.http.get<any>(this.baseurl+'FoodMenu/GetAllFoodDetails');
+  }
+  GetAllFoodDetailsById(id:any)
+  {
+    return this.http.get<any>(this.baseurl+'FoodMenu/GetAllFoodDetailsById?id='+id);
+  }
+  GetSimpleFoodDetails()
+  {
+    return this.http.get<any>(this.baseurl+'FoodMenu/GetSimpleFoodDetails');
   }
 
   GetSpecialFoodMenu()

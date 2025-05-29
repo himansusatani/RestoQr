@@ -70,7 +70,7 @@ import { OrderSignalrServiceTsService } from './Services/order-signalr.service.t
   declarations: [
     AppComponent,
     BodyComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     FormsModule,

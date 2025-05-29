@@ -12,6 +12,11 @@ export class SettingComponent {
 
   AddMenu()
   {
-    this.router.navigate(['/sidenav/addFoodMenu']);
+    this.router.navigate(['admin/sidenav/addFoodMenu']);
+  }
+
+  editMenu()
+  {
+    this.router.navigate(['admin/sidenav/listFoodMenu']);
   }
 }
