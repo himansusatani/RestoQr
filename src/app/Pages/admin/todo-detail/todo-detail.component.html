@@ -1,0 +1,29 @@
+<dx-popup [width]="'80%'" [height]="'80%'" [(visible)]="popupVisible" title="Add/Edit Task" [showCloseButton]="true"
+    [showTitle]="true" (onHiding)="onPopupHidden()">
+
+    <div class="d-con-form">
+        <form [formGroup]="rFrom">
+            <dx-form [formData]="rFrom" [colCount]="1">
+                <dxi-item itemType="group" [colCount]="2">
+                    <dxi-item>
+                        <label>Task</label>
+                        <dx-text-box formControlName="task"></dx-text-box>
+                    </dxi-item>
+                    <dxi-item>
+                        <label>Current Time</label>
+                        <dx-date-box formControlName="currTime" type="date"></dx-date-box>
+                    </dxi-item>
+                    <dxi-item>
+                        <label>Estimated Time</label>
+                        <dx-date-box formControlName="etaTime" type="date"></dx-date-box>
+                    </dxi-item>
+                </dxi-item>
+            </dx-form>
+        </form>
+        <div class="form-footer mt-3">
+            <dx-button text="Submit" type="success" stylingMode="contained" (onClick)="addeditButton()">
+            </dx-button>
+        </div>
+    </div>
+
+</dx-popup>

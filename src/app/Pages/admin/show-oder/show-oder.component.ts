@@ -41,14 +41,6 @@ export class ShowOderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.GetOrderData();
     this.orderSignalrService.startConnection();  // Start the SignalR connection
-
-    // this.signalRSubscription = this.orderSignalrService.orderReceived$.subscribe((newOrders) => {
-    //   console.log('New order received via SignalR:', newOrders);
-    //   this.data = newOrders;  // Update the order data
-
-    //   // Trigger change detection manually if data is updated outside Angular's cycle
-    //   this.cdr.detectChanges();
-    // });
     this.signalRSubscription = this.orderSignalrService.orderReceived$.subscribe((newOrders) => {
       const message = "New Order Received!!";
       notify({ message, width: 450 }, 'success', 2000);

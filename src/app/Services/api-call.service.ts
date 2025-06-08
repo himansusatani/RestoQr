@@ -67,6 +67,21 @@ export class ApiCallService {
     return this.http.delete<any>(this.baseurl+'FoodMenu/DeleteFoodMenu?id='+id);
   }
 
+  GetAllTodoList(){
+    return this.http.get<any>(this.baseurl+'TodoList/GetAllTodoList');
+  }
+
+  GetAllTodoListById(id:any){
+    return this.http.get<any>(this.baseurl+'TodoList/GetAllTodoListById?id='+id);
+  } 
+
+  InsertUpdateTodoList(obj:any, id:any){
+    return this.http.post<any>(this.baseurl+'TodoList/InsertUpdateTodoList?id='+id,obj);
+  }
+  DeleteTodoList(id:any){
+    return this.http.delete<any>(this.baseurl+'TodoList/DeleteTodoList?id='+id);
+  }
+
   //User Api
 
   GetAllFoodDetails(){

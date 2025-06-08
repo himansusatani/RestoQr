@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatSidenavModule } from '@angular/material/sidenav';
@@ -69,6 +69,7 @@ import { ForgotPasswordComponent } from '../forgot-password/forgot-password.comp
 import { ResetComponent } from '../../reset/reset.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoListComponent } from '../todo-list/todo-list.component';
+import { TodoDetailComponent } from '../todo-detail/todo-detail.component';
 
 
 // Add any needed shared modules here (Material, DevExtreme, etc.)
@@ -87,7 +88,8 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
     LoginAdminComponent,
     ForgotPasswordComponent,
     ResetComponent,
-    TodoListComponent
+    TodoListComponent,
+    TodoDetailComponent,
   ],
   imports: [
     FormsModule,
@@ -136,6 +138,7 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
         NgxPrintModule,
         NgxUiLoaderModule,
         AdminRoutingModule,
-  ]
+  ],
+  providers: [DatePipe],
 })
 export class AdminModule { }

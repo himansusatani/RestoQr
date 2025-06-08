@@ -1,3 +1,31 @@
-<div class="container">
-    <h1>hello</h1>
+<div class="content-block dx-card main-margin">
+    <div class="d-con-no-filter-grid-flex-row">
+        <h1 style="color: rgb(57, 54, 54); font-weight: bold;">ToDo List</h1>
+        <!-- Toolbar with button and search panel -->
+                <dx-button class="add-task-btn col-md-3 ml-3" text="Add Task" stylingMode="contained" type="success" icon="add"
+                    (onClick)="addTask()"></dx-button>
+        <dx-data-grid class="d-grid-no-batch-actions-filter" [remoteOperations]="false" [allowColumnReordering]="true"
+            [rowAlternationEnabled]="true" [showBorders]="true" [width]="'100%'" [height]="gridHeight"
+            [dataSource]="data" keyExpr="id">
+            <dxo-search-panel [visible]="true" [width]="250" placeholder="Search..."></dxo-search-panel>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+
+            <!-- Grid Columns -->
+            <dxi-column dataField="id" caption="Task Id" [width]="columnWidths.id"></dxi-column>
+            <dxi-column dataField="task" caption="Task" [width]="columnWidths.task"></dxi-column>
+            <dxi-column dataField="currTime" caption="Curr. Time" [width]="columnWidths.currTime"></dxi-column>
+            <dxi-column dataField="etaTime" caption="Eta. Time" [width]="columnWidths.etaTime"></dxi-column>
+            <dxi-column cellTemplate="cellTemplate" caption="Action" [width]="columnWidths.btn"></dxi-column>
+
+            <div *dxTemplate="let data of 'cellTemplate'">
+                <dx-button stylingMode="contained" text="Edit" style="background-color: black; color: whitesmoke"
+                    (onClick)="editBtn(data.data.id)" [width]="100"></dx-button>
+                <dx-button stylingMode="contained" text="Delete" style="background-color: white; color: black"
+                    (onClick)="deleteBtn(data.data.id)" [width]="100"></dx-button>
+            </div>
+        </dx-data-grid>
+    </div>
 </div>
