@@ -4,6 +4,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
 import { navbarData } from './nav-data';
+import { NotificationServiceService } from 'src/app/Services/notification-service.service';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -19,23 +20,38 @@ export class SidenavComponent implements AfterViewInit {
   showFiller = false;
   @ViewChild('drawer') drawer!: MatDrawer;
   badgevisible = false;
-  @ViewChild(MatDrawer) sidenav!: MatDrawer;
+  //@ViewChild(MatDrawer) sidenav!: MatDrawer;
 
+  popupVisible: boolean = false; // Flag for popup visibility
+  pdfPopupVisible: boolean = false; // Flag for PDF popup visibility
+  gridHeight: number = 400; // Default grid height
+  popupWidth: string = '80%'; // Default popup width
+  popupHeight: string = '80%'; // Default popup height
   items: any;
   isLoggedIn = true;
   collapsed = false;
   screenWidth = 0;
   navData = navbarData;
-
-  constructor(private observer: BreakpointObserver, private route: Router, private cdRef: ChangeDetectorRef) {}
+  notificationMessage: string = '';
+  notificationCount = 0;
+  notificationArray: any[] = [];
+  constructor(private observer: BreakpointObserver, private route: Router, private cdRef: ChangeDetectorRef, private notificationService: NotificationServiceService) {}
 
   ngOnInit() {
     this.items = [
       { text: 'Share', items: [{ text: 'Facebook' }, { text: 'Twitter' }] },
-      { text: 'Download' },
+      { text: 'Download' }, 
       { text: 'Comment' },
       { text: 'Favorite' }
     ];
+    this.notificationService.currentMessage.subscribe(message => {
+      if (message) {
+        this.notificationMessage = message;
+        this.notificationArray.push(message); // Add new message to the array
+        console.log("Notification Array:", this.notificationArray);
+        this.notificationCount = this.notificationArray.length; // Update notification count based on array length
+      }
+    });
   }
 
   logout() {
@@ -82,6 +98,13 @@ export class SidenavComponent implements AfterViewInit {
   }
 
   badgevisibility() {
-    this.badgevisible = !this.badgevisible;
+    console.log("Badge visibility toggled");
+    this.popupVisible = true;
+  }
+
+  clearNotifications() {
+    this.notificationMessage = '';
+    this.notificationCount = 0;
+    this.notificationArray = []; // Clear the notification array
   }
 }

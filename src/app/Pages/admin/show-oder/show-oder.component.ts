@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import notify from 'devextreme/ui/notify';
 import { OrderSignalrServiceTsService } from 'src/app/Services/order-signalr.service.ts.service';
 import { Subscription } from 'rxjs';
+import { NotificationServiceService } from 'src/app/Services/notification-service.service';
 
 @Component({
   selector: 'app-show-oder',
@@ -34,8 +35,8 @@ export class ShowOderComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private orderSignalrService: OrderSignalrServiceTsService,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
-
+    private cdr: ChangeDetectorRef, // Inject ChangeDetectorRef
+    private notificationService: NotificationServiceService,
   ) { }
 
   ngOnInit() {
@@ -43,6 +44,8 @@ export class ShowOderComponent implements OnInit, OnDestroy {
     this.orderSignalrService.startConnection();  // Start the SignalR connection
     this.signalRSubscription = this.orderSignalrService.orderReceived$.subscribe((newOrders) => {
       const message = "New Order Received!!";
+      this.notificationService.changeMessage(message); // Notify other components
+    //  this.cdr.detectChanges(); // Ensure the view is updated
       notify({ message, width: 450 }, 'success', 2000);
       if (newOrders && newOrders.length > 0) {
         this.data = newOrders;  // Update your local data

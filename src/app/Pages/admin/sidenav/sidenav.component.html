@@ -1,71 +1,84 @@
 <mat-toolbar class="" style="background-color: #E0E0E0;">
-    <button class="btn" (click)="drawer.toggle()" mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>RestoQr</span>
-    <span class="example-spacer"></span>
-    <button class="btn" (click)="badgevisibility()" mat-icon-button>
-      <mat-icon matBadgeColor="accent" matBadge="15" [matBadgeHidden]="badgevisible" matBadgeSize="small">
-        notifications
-      </mat-icon>
-    </button>
-    <button class="btn" (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-    </button>
-  </mat-toolbar>
-  
-  <mat-drawer-container autosize>
-    <mat-drawer #drawer opened="true" mode="side" position="start">
-      <mat-nav-list>
-        <img src="../../../assets/Images/logo.png" alt="">
-  
-        <mat-list-item routerLink="dashboard">
-          <a class="link" routerLink="dashboard">
-            <mat-icon>dashboard</mat-icon> Dashboard
-          </a>
-        </mat-list-item>
-  
-        <mat-list-item routerLink="showorder">
-          <a class="link" routerLink="showorder">
-            <mat-icon>home</mat-icon> ShowOrder
-          </a>
-        </mat-list-item>
-  
-        <mat-list-item routerLink="allorder">
-          <a class="link" routerLink="allorder">
-            <mat-icon>table</mat-icon> AllOrder
-          </a>
-        </mat-list-item>
-  
-        <mat-list-item routerLink="setting">
-          <a class="link" routerLink="setting">
-            <mat-icon>settings</mat-icon> Settings
-          </a>
-        </mat-list-item>
-  
-        <mat-list-item>
-          <a>
-            <mat-icon>help</mat-icon> Help
-          </a>
-        </mat-list-item>
-  
-        <mat-list-item>
-          <a>
-            <mat-icon>analytics</mat-icon> analytics
-          </a>
-        </mat-list-item>
-        <mat-list-item routerLink="todoList">
-          <a>
-            <mat-icon>check_box</mat-icon> ToDo
-          </a>
-        </mat-list-item>
-      </mat-nav-list>
-    </mat-drawer>
-  
-    <mat-drawer-content>
-      <div style="text-align: center; min-height: 600px;">
-        <router-outlet></router-outlet>
-      </div>
-    </mat-drawer-content>
-  </mat-drawer-container>
-  
+  <button class="btn" (click)="drawer.toggle()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>RestoQr</span>
+  <span class="example-spacer"></span>
+  <!-- DevExtreme notification icon with badge -->
+<div style="position: relative; display: inline-block; cursor: pointer;" (click)="badgevisibility()">
+  <span style="font-size: 24px;"><i class="bi bi-bell"></i></span> <!-- Bell icon -->
+  <span *ngIf="notificationCount > 0"
+        class="badge bg-danger"
+        style="position: absolute; top: -8px; right: -10px; font-size: 0.75rem;">
+    {{ notificationCount }}
+  </span>
+</div>
+
+
+
+  <button class="btn" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+      <img src="../../../assets/Images/logo.png" alt="">
+
+      <mat-list-item routerLink="dashboard">
+        <a class="link" routerLink="dashboard">
+          <mat-icon>dashboard</mat-icon> Dashboard
+        </a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="showorder">
+        <a class="link" routerLink="showorder">
+          <mat-icon>home</mat-icon> ShowOrder
+        </a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="allorder">
+        <a class="link" routerLink="allorder">
+          <mat-icon>table</mat-icon> AllOrder
+        </a>
+      </mat-list-item>
+
+      <mat-list-item routerLink="setting">
+        <a class="link" routerLink="setting">
+          <mat-icon>settings</mat-icon> Settings
+        </a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a>
+          <mat-icon>help</mat-icon> Help
+        </a>
+      </mat-list-item>
+
+      <mat-list-item>
+        <a>
+          <mat-icon>analytics</mat-icon> analytics
+        </a>
+      </mat-list-item>
+      <mat-list-item routerLink="todoList">
+        <a>
+          <mat-icon>check_box</mat-icon> ToDo
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div style="text-align: center; min-height: 600px;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<dx-popup [width]="popupWidth" [height]="popupHeight" [hideOnOutsideClick]="true" [showCloseButton]="true"
+  [(visible)]="popupVisible" title="Notification" onHiding="onPopupHiding()">
+  <div class="notification-container">
+    <p *ngIf="notificationMessage">{{ notificationMessage }} <button class="btn btn-sm btn-danger" (click)="clearNotifications()">Clear</button></p>
+  </div>
+</dx-popup>

@@ -43,6 +43,6 @@ export class UserFoodSelectionComponent {
   }
   OpenSpecialItem()
   {
-    this.router.navigate(['/user/userheader/specialFood']);
+    this.router.navigate(['/user/userNav/specialFood']);
   }
 }
